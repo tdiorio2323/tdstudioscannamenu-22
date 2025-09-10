@@ -28,11 +28,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Auth />} />
+          <Route path="/" element={<Bagman />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/brand" element={<Brand />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/tdstudios" element={<Bagman />} />
           <Route path="/punkiez" element={<Punkiez />} />
           {/* Dev-only builder route */}
