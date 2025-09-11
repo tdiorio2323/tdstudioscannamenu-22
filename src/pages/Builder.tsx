@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -35,7 +35,7 @@ const ${compName} = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">${body || "Scaffolded page."}</p>
-          ${(primary || secondary) ? `<div className=\"flex gap-2\">\n            ${buttons}\n          </div>` : ""}
+          ${(primary || secondary) ? `<div className="flex gap-2">\n            ${buttons}\n          </div>` : ""}
         </CardContent>
       </Card>
     </div>
@@ -58,14 +58,22 @@ const Builder = () => {
   const [sVariant, setSVariant] = useState<Variant>("outline");
   const [includePrimary, setIncludePrimary] = useState(true);
   const [includeSecondary, setIncludeSecondary] = useState(false);
+  const [code, setCode] = useState("");
 
-  const code = useMemo(() => generateCode(
-    name,
-    title,
-    body,
-    includePrimary ? { label: pLabel, variant: pVariant } : undefined,
-    includeSecondary ? { label: sLabel, variant: sVariant } : undefined,
-  ), [name, title, body, includePrimary, includeSecondary, pLabel, pVariant, sLabel, sVariant]);
+  // Debounced code generation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCode(generateCode(
+        name,
+        title,
+        body,
+        includePrimary ? { label: pLabel, variant: pVariant } : undefined,
+        includeSecondary ? { label: sLabel, variant: sVariant } : undefined,
+      ));
+    }, 150);
+    
+    return () => clearTimeout(timer);
+  }, [name, title, body, includePrimary, includeSecondary, pLabel, pVariant, sLabel, sVariant]);
 
   // Valid button variants for selects
   const variants: Variant[] = ["default", "secondary", "outline", "ghost", "link"];
@@ -79,8 +87,8 @@ const Builder = () => {
       });
       if (!res.ok) throw new Error(await res.text());
       toast({ title: "Page created", description: `${name} -> ${route}` });
-    } catch (e: any) {
-      toast({ title: "Error", description: e.message, variant: "destructive" });
+    } catch (e: unknown) {
+      toast({ title: "Error", description: e instanceof Error ? e.message : "Unknown error", variant: "destructive" });
     }
   };
 

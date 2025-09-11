@@ -16,8 +16,14 @@ import Checkout from "./pages/Checkout";
 import Admin from "./pages/Admin";
 import Brand from "./pages/Brand";
 import Builder from "./pages/Builder";
+import AuthBuilder from "./pages/AuthBuilder";
+import DynamicAuthCard from "./pages/DynamicAuthCard";
 import Bagman from "./pages/Bagman";
 import Punkiez from "./pages/Punkiez";
+import Quickprintz from "./pages/Quickprintz";
+import Form from "./pages/Form";
+import { MassCardEditor } from "./components/MassCardEditor";
+import { ComponentLibrary } from "./components/ComponentLibrary";
 
 const queryClient = new QueryClient();
 
@@ -36,8 +42,15 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/tdstudios" element={<Bagman />} />
           <Route path="/punkiez" element={<Punkiez />} />
-          {/* Dev-only builder route */}
+          <Route path="/quickprintz" element={<Quickprintz />} />
+          <Route path="/form" element={<Form />} />
+          {/* Dev-only builder routes */}
           <Route path="/__builder" element={<Builder />} />
+          <Route path="/__auth-builder" element={<AuthBuilder />} />
+          <Route path="/__card-editor" element={<MassCardEditor />} />
+          <Route path="/__components" element={<ComponentLibrary />} />
+          {/* Dynamic auth card routes - must be ABOVE catch-all */}
+          <Route path="/:slug" element={<DynamicAuthCard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
