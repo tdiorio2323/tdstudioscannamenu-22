@@ -1,0 +1,100 @@
+[
+  {
+    "slug": "punkiez",
+    "title": "Punkiez",
+    "username": "@punkiez",
+    "image": "https://i.imgur.com/CftyHyg.png",
+    "bgImage": "https://i.imgur.com/KBjPwGI.jpg",
+    "buttons": [
+      {
+        "label": "Telegram",
+        "url": "https://t.me/+mx113PockSVjNzgx"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/punkiez__/"
+      }
+    ]
+  },
+  {
+    "slug": "bagman",
+    "title": "Bagman",
+    "username": "@bagman",
+    "image": "/lovable-uploads/bagman-logo.png",
+    "bgImage": "https://i.imgur.com/ISdTuJI.jpg",
+    "buttons": [
+      {
+        "label": "Visit Site",
+        "url": "https://bagmanpack.com"
+      }
+    ]
+  },
+  {
+    "slug": "tdstudios",
+    "title": "TD Studios",
+    "username": "@tdstudios",
+    "image": "https://i.imgur.com/tWH4c48.png",
+    "bgImage": "https://i.imgur.com/KBjPwGI.jpg",
+    "buttons": [
+      {
+        "label": "Telegram",
+        "url": "https://t.me/+mx113PockSVjNzgx"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/punkiez__/"
+      },
+      {
+        "label": "CONTACT",
+        "url": "#"
+      },
+      {
+        "label": "PAY ME",
+        "url": "#"
+      },
+      {
+        "label": "PORTFOLIO",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "slug": "test-linktree",
+    "title": "Test User",
+    "username": "@testuser123",
+    "buttons": [
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/testuser123"
+      }
+    ],
+    "image": "/images/test-linktree.png",
+    "bgImage": "/images/test-linktree.png"
+  },
+  {
+    "slug": "real-screenshot",
+    "title": "Test User",
+    "username": "@u503734486",
+    "buttons": [
+      {
+        "label": "Test Link",
+        "url": "https://example.com"
+      }
+    ],
+    "image": "/images/real-screenshot.png",
+    "bgImage": "/images/real-screenshot.png"
+  },
+  {
+    "slug": "unknown",
+    "title": "Amberny O @ @ambrrrnee - 1d",
+    "username": "@MamiGbackup",
+    "buttons": [
+      {
+        "label": "Contact",
+        "url": "#"
+      }
+    ],
+    "image": "/images/unknown.png",
+    "bgImage": "/images/unknown.png"
+  }
+]

@@ -151,33 +151,16 @@ export const AuthPage = ({ onLogin, brandLogoSrc, bounceSrc, showBounceOnMobile 
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background image override or video fallback */}
-      {bgImageSrc ? (
-        <img
-          src={bgImageSrc}
-          alt="background"
-          className="absolute inset-0 w-full h-full object-cover"
+      {/* Diamond background */}
+      {bgImageSrc && (
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-10"
+          style={{ backgroundImage: `url(${bgImageSrc})` }}
         />
-      ) : (
-        !videoError && (
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            src={videoSrc}
-            poster={posterSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            onError={() => setVideoError(true)}
-          />
-        )
       )}
-      {/* Bouncing logo layer (optional on mobile) */}
-      <div className={showBounceOnMobile ? undefined : "hidden md:block"}>
-        <BouncingLogoBackground src={bounceLogoSrc} width={140} height={140} speed={2.8} />
-      </div>
-      {/* Dark overlay for better contrast */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Fallback solid black background */}
+      <div className="absolute inset-0 bg-black" />
+      {/* Bouncing logo removed */}
 
       <Card className="w-full max-w-md bg-black/10 border-white/10 shadow-white-glow relative z-20">
         <CardHeader className="text-center space-y-6">
@@ -185,7 +168,7 @@ export const AuthPage = ({ onLogin, brandLogoSrc, bounceSrc, showBounceOnMobile 
             <img 
               src={brandLogo}
               alt="Brand Logo" 
-              className="h-56 w-auto"
+              className="h-28 w-auto"
             />
           </div>
           
@@ -197,42 +180,48 @@ export const AuthPage = ({ onLogin, brandLogoSrc, bounceSrc, showBounceOnMobile 
             <Button
               variant="chrome"
               className="w-full h-12 text-2xl font-semibold rounded-xl font-bebas-neue text-black shadow-md"
-              onClick={() => window.open('https://t.me/+mx113PockSVjNzgx', '_blank')}
+              onClick={() => {}}
             >
-              Telegram
+              GET A LINK PAGE
             </Button>
             <Button
               variant="chrome"
               className="w-full h-12 text-2xl font-semibold rounded-xl font-bebas-neue text-black shadow-md"
-              onClick={() => window.open('https://www.instagram.com/punkiez__/', '_blank')}
+              onClick={() => window.open('https://t.me/+mx113PockSVjNzgx', '_blank')}
             >
-              Instagram
+              CONTACT
             </Button>
-            {!hideExtraButtons && (
-              <>
-                <Button
-                  variant="chrome"
-                  className="w-full h-12 text-2xl font-semibold rounded-xl font-bebas-neue text-black shadow-md"
-                  onClick={() => window.open('#', '_blank')}
-                >
-                  CONTACT
-                </Button>
-                <Button
-                  variant="chrome"
-                  className="w-full h-12 text-2xl font-semibold rounded-xl font-bebas-neue text-black shadow-md"
-                  onClick={() => window.open('#', '_blank')}
-                >
-                  PAY ME
-                </Button>
-                <Button
-                  variant="chrome"
-                  className="w-full h-12 text-2xl font-semibold rounded-xl font-bebas-neue text-black shadow-md"
-                  onClick={() => window.open('#', '_blank')}
-                >
-                  PORTFOLIO
-                </Button>
-              </>
-            )}
+            <Button
+              variant="chrome"
+              className="w-full h-12 text-2xl font-semibold rounded-xl font-bebas-neue text-black shadow-md"
+              onClick={() => {}}
+            >
+              WEBSITE
+            </Button>
+          </div>
+
+          {/* MTV Video Box */}
+          <div className="w-full h-80 bg-black border border-white/20 rounded-xl overflow-hidden relative">
+            <video 
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              key="mtv-video"
+            >
+              <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4" />
+              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
+            </video>
+            
+            {/* Static overlay effect */}
+            <div 
+              className="absolute inset-0 opacity-20 pointer-events-none"
+              style={{
+                background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                animation: 'staticNoise 0.1s infinite'
+              }}
+            />
           </div>
 
           {extraImageSrc && (
@@ -250,67 +239,6 @@ export const AuthPage = ({ onLogin, brandLogoSrc, bounceSrc, showBounceOnMobile 
                 <img src={extraImageSrc} alt="promo" className="w-full h-[300px] object-cover" />
               </div>
             )
-          )}
-          
-          {!hideAuthForm && (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="email" className="text-white/90 text-sm font-medium">
-                  Email Address
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white/10 text-white placeholder:text-white/50 border-white/30 h-12 text-base"
-                />
-              </div>
-
-              {showPasswordField && (
-                <div className="space-y-2">
-                  <Label htmlFor="password" className="text-white/90 text-sm font-medium">
-                    Password
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      id="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="bg-white/10 text-white placeholder:text-white/50 border-white/30 pr-10 h-12 text-base"
-                    />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="absolute right-0 top-0 h-12 px-3 py-2 hover:bg-transparent"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <EyeOff className="h-4 w-4 text-white/60" />
-                      ) : (
-                        <Eye className="h-4 w-4 text-white/60" />
-                      )}
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-3">
-              <Button 
-                type="submit" 
-                disabled={isLoading} 
-                className="w-full h-12 text-base font-semibold bg-primary hover:bg-primary-hover"
-              >
-                {isLoading ? "Loading..." : (!showPasswordField ? "Continue" : "Sign In")}
-              </Button>
-            </div>
-          </form>
           )}
         </CardContent>
       </Card>
