@@ -34,7 +34,13 @@ const Auth = () => {
     });
   }, [navigate]);
 
-  return <AuthPage />;
+  return (
+    <AuthPage 
+      brandLogoSrc="https://i.imgur.com/tWH4c48.png"
+      bounceSrc="https://i.imgur.com/tWH4c48.png"
+      bgImageSrc="/diamond-bg.jpg"
+    />
+  );
 };
 
 export default Auth;

@@ -34,7 +34,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Bagman />} />
+          <Route path="/" element={<Auth />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<Admin />} />
