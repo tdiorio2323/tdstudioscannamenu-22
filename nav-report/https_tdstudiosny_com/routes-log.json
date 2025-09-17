@@ -1,0 +1,134 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "d690321212de791ac3436fa28514850fad7aab92",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/shop",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/shop",
+    "header_present": true,
+    "logo_to_home": false,
+    "duplicate_header": false,
+    "header_hash": "20eb035740d235143ef7ba40f882df9c29f2ad14",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/checkout",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/checkout",
+    "header_present": true,
+    "logo_to_home": false,
+    "duplicate_header": false,
+    "header_hash": "20eb035740d235143ef7ba40f882df9c29f2ad14",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/mylar-designs",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/mylar-designs",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "e10036a754aeb4615efe2ddaddf4b971bc4dff7c",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/custom-designs",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/custom-designs",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "82aa1cdf5a6d40b23a31391fb34e9b7c4918476f",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/social-content",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/social-content",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "dd4ec2e6c7f94308f9c592815e6399ab8091d2ab",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/digital-assets",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/digital-assets",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "66a5f94631d1a0ebdab1e1a8ea97b9dd338c1249",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/referral",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/referral",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "2f77f3098887d83a405951890db7106660c6c80f",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/contact",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/contact",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "038a9bec040ed29c160a80d9faacbe3f2751c602",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/custom-websites",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/custom-websites",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "1fb1b689bebad2c748e45e2d399fbbf22ff7563f",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/custom-mylar-form",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/custom-mylar-form",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "619a9a38454a0106868abc4487cf3829b5b9a1d0",
+    "console_errors": [],
+    "notes": ""
+  },
+  {
+    "route": "/custom-design-form",
+    "status": 200,
+    "final_url": "https://tdstudiosny.com/custom-design-form",
+    "header_present": true,
+    "logo_to_home": true,
+    "duplicate_header": false,
+    "header_hash": "62b8f6726a6d630866fe3f1e01ab39c009aaea16",
+    "console_errors": [],
+    "notes": ""
+  }
+]
