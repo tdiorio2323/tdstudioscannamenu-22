@@ -121,20 +121,26 @@ const Contact: React.FC = () => {
               </GlassCard>
             </div>
 
-            {/* Services List */}
-            <GlassCard className="p-6">
-              <h3 className="text-xl font-bold text-white mb-4">Our Services</h3>
-              <ul className="space-y-2">
-                {services.slice(0, -1).map((service, index) => (
-                  <li key={index} className="text-white/70 flex items-center">
-                    <svg className="w-4 h-4 text-white/40 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {service}
-                  </li>
-                ))}
-              </ul>
-            </GlassCard>
+            <div className="grid gap-4">
+              <GlassCard className="p-6">
+                <h3 className="text-xl font-bold text-white mb-3">Web Experience</h3>
+                <p className="text-neutral-300 text-[15px]">
+                  Strategy, UX architecture, and high-converting marketing sites. Landing pages, CMS builds, and measurement setup.
+                </p>
+              </GlassCard>
+              <GlassCard className="p-6">
+                <h3 className="text-xl font-bold text-white mb-3">Product & Platform Development</h3>
+                <p className="text-neutral-300 text-[15px]">
+                  Full-stack engineering, integrations, analytics, and ongoing iteration for apps, SaaS dashboards, and commerce experiences.
+                </p>
+              </GlassCard>
+              <GlassCard className="p-6">
+                <h3 className="text-xl font-bold text-white mb-3">Social & Content Systems</h3>
+                <p className="text-neutral-300 text-[15px]">
+                  Editorial programming, asset engines, and campaign management that keep community and growth teams shipping.
+                </p>
+              </GlassCard>
+            </div>
           </div>
 
           {/* Contact Form */}
