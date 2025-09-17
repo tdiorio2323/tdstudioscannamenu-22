@@ -30,6 +30,15 @@ Notes
 - Preview deployments may show 401 if project preview protection is enabled. Production domain is public.
 - Redirects/SPA rewrites are configured in `vercel.json`.
 
+Database (Neon) quick start
+
+- Env vars (set in Vercel → Settings → Environment Variables):
+  - `POSTGRES_URL` (or `DATABASE_URL`) — Your Neon connection string (pooled recommended)
+- API routes:
+  - `GET /api/comments` → list last 100 comments
+  - `POST /api/comments` → create a comment. Body: `{ "comment": "text" }`
+- Table auto-creation: The first call creates table `comments` if missing.
+
 Integrating n8n
 
 - Add a secure proxy endpoint at `/api/n8n-proxy` (already added) that forwards to your n8n webhook.
