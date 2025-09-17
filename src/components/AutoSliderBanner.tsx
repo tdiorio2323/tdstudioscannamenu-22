@@ -43,7 +43,7 @@ export const AutoSliderBanner: React.FC = () => {
         ))
       )}
 
-      <div className="absolute inset-0 bg-black/45 flex flex-col items-center justify-center text-center px-6">
+      <div className="absolute inset-0 bg-black/25 flex flex-col items-center justify-center text-center px-6">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-100 mb-3">
           <span className="block md:inline">LUXURY</span>
           <span className="block md:inline md:ml-4">STRATEGY</span>
