@@ -1,37 +1,19 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `src/` — App code. Key folders: `components/` (UI + layouts), `pages/` (route views), `hooks/`, `supabase/` (client + types), shared `utils.ts`. Co‑locate assets with code (e.g., `grass-background.jpg`).
-- `public/` — Static assets served as‑is.
-- `dist/` — Build output (do not edit).
-- Config: `vite.config.ts`, `tailwind.config.ts`, `eslint.config.js`, `tsconfig*.json`.
-- Database: `supabase/` with `migrations/` and `config.toml`.
+Source lives in `src/`, with UI in `src/components/`, route views in `src/pages/`, hooks in `src/hooks/`, and Supabase helpers in `src/supabase/`. Shared utilities belong in `src/utils.ts`, and assets should sit beside the code that uses them. Static files that must ship verbatim go in `public/`; build artifacts appear in `dist/` and should not be edited. Supabase migrations reside in `supabase/migrations/` alongside `config.toml`.
 
 ## Build, Test, and Development Commands
-- `npm install` — Install dependencies.
-- `npm run dev` — Start Vite dev server with HMR.
-- `npm run build` — Production build to `dist/`.
-- `npm run preview` — Serve built app locally from `dist/`.
-- `npm run lint` — Run ESLint per `eslint.config.js`.
+Run `npm install` once per environment to sync dependencies. Use `npm run dev` for the Vite dev server with HMR, and `npm run build` to emit the production bundle into `dist/`. Preview a production build locally with `npm run preview`. Lint React/TypeScript code with `npm run lint` to catch style or hook issues early.
 
 ## Coding Style & Naming Conventions
-- Language: TypeScript + React (`.ts/.tsx`); indentation: 2 spaces.
-- Components: PascalCase in `src/components` (e.g., `DashboardLayout.tsx`).
-- Pages: PascalCase in `src/pages` (e.g., `Checkout.tsx`).
-- Hooks: exported function names camelCase starting with `use`; file names kebab‑case (e.g., `use-mobile.tsx`) in `src/hooks`.
-- Functions/variables: camelCase; constants UPPER_SNAKE_CASE; prefer named exports for reusable components.
-- Styling: Tailwind CSS; prefer utility classes over ad‑hoc CSS.
-- Linting: React Hooks rules enabled; `no-unused-vars` relaxed.
+Code is TypeScript + React with 2-space indentation. Components live in PascalCase files (e.g., `DashboardLayout.tsx`), pages follow the same pattern (e.g., `Checkout.tsx`), and hooks use camelCase names in kebab-case files (e.g., `use-mobile.tsx`). Favour Tailwind utility classes over ad-hoc CSS. Prefer named exports for reusable units, and keep constants in UPPER_SNAKE_CASE.
 
 ## Testing Guidelines
-- No test framework is preconfigured. If adding tests, use Vitest + React Testing Library.
-- Name tests `*.test.ts`/`*.test.tsx`; co‑locate near source or use `src/__tests__/`.
-- Add a `test` script when introducing Vitest, then run `npm run test` (or `npx vitest`). Target critical hooks/components and auth/data flows.
+No test harness ships by default. If tests are required, introduce Vitest with React Testing Library, add an `npm run test` script, and place specs alongside their targets or under `src/__tests__/` using the `*.test.ts(x)` suffix. Focus coverage on critical hooks, data flows, and authentication seams.
 
 ## Commit & Pull Request Guidelines
-- Use Conventional Commits (examples): `feat: add Brand dashboard`, `fix: correct toast timing`, `chore: update deps`.
-- PRs must include: concise description, linked issues, screenshots/GIFs for UI changes, and manual test steps (dev server, routes touched). Keep PRs small and focused; avoid unrelated refactors.
+Follow Conventional Commits such as `feat: add Brand dashboard` or `fix: correct toast timing`. Keep changes scoped and avoid bundling unrelated refactors. Pull requests should include a concise summary, linked issues, UI screenshots or GIFs when visuals change, and manual verification steps (e.g., `npm run dev`, routes touched).
 
 ## Security & Configuration Tips
-- Never commit secrets. Create `.env.local` with `VITE_SUPABASE_URL=` and `VITE_SUPABASE_ANON_KEY=`; access via `import.meta.env` in `src/supabase/client.ts`.
-- Do not edit `dist/`; commit only source under `src/` and configuration files.
+Never commit Supabase secrets; store them in `.env.local` as `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` and access them via `import.meta.env`. Verify `dist/` is ignored from commits, and audit new dependencies before adding them to ensure compatibility with Vite and Supabase tooling.
