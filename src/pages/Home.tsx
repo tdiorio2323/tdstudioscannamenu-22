@@ -97,7 +97,7 @@ const Home: React.FC = () => {
             </LiquidGlassCard>
 
             {/* Social Content */}
-            <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,10 +136,10 @@ const Home: React.FC = () => {
                   Learn More →
                 </NavLink>
               </div>
-            </div>
+            </LiquidGlassCard>
 
             {/* Referral Program */}
-            <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,7 +157,7 @@ const Home: React.FC = () => {
                   Join Program →
                 </NavLink>
               </div>
-            </div>
+            </LiquidGlassCard>
           </div>
         </div>
       </section>
@@ -166,7 +166,7 @@ const Home: React.FC = () => {
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="p-12 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-lg border border-white/20 rounded-2xl">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-12 border border-white/20">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Ready to Elevate Your Brand?
               </h2>
@@ -182,7 +182,7 @@ const Home: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </NavLink>
-            </div>
+            </LiquidGlassCard>
           </div>
         </div>
       </section>
