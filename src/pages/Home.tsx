@@ -4,6 +4,7 @@ import { AutoSliderBanner } from '@/components/AutoSliderBanner';
 import { SplashScreen } from '@/components/SplashScreen';
 import ShimmerText from '@/components/ShimmerText';
 import { LiquidGlassCard } from '@/components/LiquidGlass';
+import CardFlip from '@/components/CardFlip';
 
 const Home: React.FC = () => {
   return (
@@ -165,6 +166,19 @@ const Home: React.FC = () => {
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
+          {/* Rotating feature cards */}
+          <div className="mb-16">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl md:text-4xl font-bold text-white">Featured Capabilities</h3>
+              <p className="text-white/60 mt-2">A quick peek at what we build</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+              <CardFlip title="Design Systems" subtitle="Consistent, scalable UI" description="We craft reusable UI libraries and robust design tokens." features={["Tokens","Components","Docs","Themeable"]} />
+              <CardFlip title="E‑commerce" subtitle="Convert with speed" description="Fast product pages, optimized checkouts, and analytics built-in." features={["Shop","Cart","Checkout","Analytics"]} />
+              <CardFlip title="Brand Kits" subtitle="Your identity everywhere" description="Logos, palettes, typography, and social templates that align." features={["Logo","Palette","Type","Templates"]} />
+            </div>
+          </div>
+
           <div className="max-w-4xl mx-auto text-center">
             <LiquidGlassCard hover="glow" variant="primary" className="p-12 border border-white/20">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
