@@ -117,10 +117,10 @@ const Home: React.FC = () => {
                   View Content →
                 </NavLink>
               </div>
-            </div>
+            </LiquidGlassCard>
 
             {/* Custom Websites */}
-            <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
