@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { CartPreview } from '@/components/CartPreview';
+import Footer from '@/components/layout/Footer';
 
 // robust body scroll lock (iOS-safe)
 function useBodyScrollLock(locked: boolean) {
@@ -189,65 +190,7 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
       {/* Cart preview overlay */}
       <CartPreview open={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-      {/* Footer */}
-      <footer className="relative z-10 mt-20 border-t border-white/10 bg-black/50 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Brand */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <NavLink to="/" className="text-xl font-bold hover:text-white/80 transition-colors cursor-pointer">
-                  TD STUDIOS
-                </NavLink>
-              </div>
-              <p className="text-white/60 text-sm leading-relaxed">
-                Premium design solutions for cannabis brands, mylar packaging,
-                and digital assets. Elevating your brand to luxury standards.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Quick Links</h3>
-              <div className="space-y-2">
-                {navigationLinks.map(({ to, label }) => (
-                  <NavLink
-                    key={to}
-                    to={to}
-                    className="block text-white/60 hover:text-white text-sm transition-colors duration-300"
-                  >
-                    {label}
-                  </NavLink>
-                ))}
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Get In Touch</h3>
-              <div className="space-y-2 text-sm text-white/60">
-                <p>Ready to elevate your brand?</p>
-                <p>Contact us for premium design solutions.</p>
-                <div className="pt-4">
-                  <NavLink
-                    to="/contact"
-                    className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105"
-                  >
-                    Start Your Project
-                  </NavLink>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="mt-12 pt-8 border-t border-white/10 text-center">
-            <p className="text-white/40 text-sm">
-              © 2024 TD Studios. All rights reserved. Premium design solutions.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
