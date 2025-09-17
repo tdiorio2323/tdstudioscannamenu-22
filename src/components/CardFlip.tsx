@@ -9,6 +9,7 @@ export interface CardFlipProps {
   subtitle?: string;
   description?: string;
   features?: string[];
+  trigger?: "hover" | "click" | "both"; // how flipping is triggered
 }
 
 export default function CardFlip({
@@ -16,14 +17,36 @@ export default function CardFlip({
   subtitle = "Explore the fundamentals",
   description = "Dive deep into the world of modern UI/UX design.",
   features = ["UI/UX", "Modern Design", "Tailwind CSS", "Kokonut UI"],
+  trigger = "hover",
 }: CardFlipProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const allowHover = trigger === "hover" || trigger === "both";
+  const allowClick = trigger === "click" || trigger === "both";
+  const toggle = () => setIsFlipped((v) => !v);
 
   return (
     <div
-      className="relative w-full max-w-[280px] h-[320px] group [perspective:2000px] mx-auto"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      className={cn(
+        "relative w-full max-w-[280px] h-[320px] group [perspective:2000px] mx-auto",
+        allowClick && "cursor-pointer"
+      )}
+      onMouseEnter={allowHover ? () => setIsFlipped(true) : undefined}
+      onMouseLeave={allowHover ? () => setIsFlipped(false) : undefined}
+      onClick={allowClick ? toggle : undefined}
+      role={allowClick ? "button" : undefined}
+      tabIndex={allowClick ? 0 : -1}
+      onKeyDown={
+        allowClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggle();
+              }
+            }
+          : undefined
+      }
+      aria-pressed={allowClick ? isFlipped : undefined}
+      aria-label="Flip card"
     >
       <div
         className={cn(
@@ -167,4 +190,3 @@ export default function CardFlip({
     </div>
   );
 }
-

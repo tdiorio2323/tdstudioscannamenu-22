@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import CardFlip from '@/components/CardFlip';
 
 const CustomDesigns: React.FC = () => {
   const services = [
@@ -75,6 +76,18 @@ const CustomDesigns: React.FC = () => {
   return (
     <div className="min-h-screen py-12 px-6">
       <div className="container mx-auto">
+        {/* Interactive highlights */}
+        <section className="mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">How Custom Works</h2>
+            <p className="text-white/60 mt-2">Tap a card on mobile, hover on desktop.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+            <CardFlip title="Brief" subtitle="Tell us goals" description="We align on brand, audience, and outcomes." features={["Brand","Audience","Goals","Scope"]} trigger="both" />
+            <CardFlip title="Design" subtitle="Explore options" description="Rapid iterations with your feedback loop." features={["Concepts","Variants","Feedback","Refine"]} trigger="both" />
+            <CardFlip title="Deliver" subtitle="Ready to use" description="Final assets, guidelines, and files packaged." features={["Exports","Guides","Handoffs","Support"]} trigger="both" />
+          </div>
+        </section>
         {/* Hero Section */}
         <div className="text-center mb-20">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">

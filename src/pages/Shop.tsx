@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { EditableProductCard } from '@/components/EditableProductCard';
+import CardFlip from '@/components/CardFlip';
 
 // Public images under "/td slide" — one product per picture
 const files = [
@@ -218,6 +219,20 @@ export default function Shop() {
 
   return (
     <main className="min-h-screen py-8 px-4">
+      {/* Feature highlights */}
+      <section className="px-2 md:px-6 pt-6 md:pt-10">
+        <div className="container mx-auto">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl md:text-4xl font-bold text-white">Why Shop With Us</h2>
+            <p className="text-white/60 mt-2">Flip to see details. Tap on mobile.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 place-items-center">
+            <CardFlip title="Curated Packs" subtitle="Only the best" description="Hand-picked digital assets and designs that perform." features={["Top sellers","Fresh drops","Tested"]} trigger="both" />
+            <CardFlip title="Fast Delivery" subtitle="Instant access" description="Immediate downloads and project onboarding." features={["Instant DL","Priority","Support"]} trigger="both" />
+            <CardFlip title="Secure Checkout" subtitle="Peace of mind" description="Simple, safe payments with receipts." features={["Trusted","Receipts","Refunds"]} trigger="both" />
+          </div>
+        </div>
+      </section>
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">Shop</h1>
