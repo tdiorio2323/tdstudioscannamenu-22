@@ -5,6 +5,7 @@ import { SplashScreen } from '@/components/SplashScreen';
 import ShimmerText from '@/components/ShimmerText';
 import { LiquidGlassCard } from '@/components/LiquidGlass';
 import CardFlip from '@/components/CardFlip';
+import CommentsBox from '@/components/CommentsBox';
 
 const Home: React.FC = () => {
   return (
@@ -197,6 +198,10 @@ const Home: React.FC = () => {
                 </svg>
               </NavLink>
             </LiquidGlassCard>
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold text-white mb-4 text-center">Leave a comment</h3>
+              <CommentsBox />
+            </div>
           </div>
         </div>
       </section>
