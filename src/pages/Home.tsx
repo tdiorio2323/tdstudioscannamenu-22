@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { AutoSliderBanner } from '@/components/AutoSliderBanner';
 import { SplashScreen } from '@/components/SplashScreen';
 import ShimmerText from '@/components/ShimmerText';
+import { LiquidGlassCard } from '@/components/LiquidGlass';
 
 const Home: React.FC = () => {
   return (
@@ -33,7 +34,7 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Mylar Designs */}
-            <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,10 +52,10 @@ const Home: React.FC = () => {
                   View Designs →
                 </NavLink>
               </div>
-            </div>
+            </LiquidGlassCard>
 
             {/* Custom Designs */}
-            <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,10 +73,10 @@ const Home: React.FC = () => {
                   Get Started →
                 </NavLink>
               </div>
-            </div>
+            </LiquidGlassCard>
 
             {/* Digital Assets */}
-            <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +94,7 @@ const Home: React.FC = () => {
                   Browse Assets →
                 </NavLink>
               </div>
-            </div>
+            </LiquidGlassCard>
 
             {/* Social Content */}
             <div className="group p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
