@@ -103,9 +103,30 @@ const Home: React.FC = () => {
               <p className="text-white/60 mt-2">A quick peek at what we build</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
-              <CardFlip title="Design Systems" subtitle="Consistent, scalable UI" description="We craft reusable UI libraries and robust design tokens." features={["Tokens","Components","Docs","Themeable"]} />
-              <CardFlip title="E‑commerce" subtitle="Convert with speed" description="Fast product pages, optimized checkouts, and analytics built-in." features={["Shop","Cart","Checkout","Analytics"]} />
-              <CardFlip title="Brand Kits" subtitle="Your identity everywhere" description="Logos, palettes, typography, and social templates that align." features={["Logo","Palette","Type","Templates"]} />
+              <CardFlip
+                title="Design Systems"
+                subtitle="Consistent, scalable UI"
+                description="We craft reusable UI libraries and robust design tokens."
+                features={["Tokens","Components","Docs","Themeable"]}
+                coverImage="/images/TD HOT TUB.png"
+                coverAlt="Design systems"
+              />
+              <CardFlip
+                title="E‑commerce"
+                subtitle="Convert with speed"
+                description="Fast product pages, optimized checkouts, and analytics built-in."
+                features={["Shop","Cart","Checkout","Analytics"]}
+                coverImage="/images/TD 3D CHROME.png"
+                coverAlt="E-commerce"
+              />
+              <CardFlip
+                title="Brand Kits"
+                subtitle="Your identity everywhere"
+                description="Logos, palettes, typography, and social templates that align."
+                features={["Logo","Palette","Type","Templates"]}
+                coverImage="/images/TD STUDIOS COLOMBIA.png"
+                coverAlt="Brand kits"
+              />
             </div>
           </div>
 
