@@ -1,5 +1,6 @@
 import React from "react";
 import { Instagram, Mail, Dribbble } from "lucide-react";
+import { LiquidButton } from "@/components/LiquidGlass";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -63,17 +64,14 @@ export default function Footer() {
               </a>
               <p className="mt-1 text-zinc-400">NYC • Worldwide</p>
             </div>
-            <a
-              href="/contact"
-              className="mt-5 inline-flex items-center rounded-2xl px-4 py-2 text-sm font-medium text-white bg-white/5 backdrop-blur ring-1 ring-white/10 hover:ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(10,87,255,0.45)] transition"
-            >
-              Start your project
-            </a>
+            <LiquidButton asChild size="xl" className="mt-5 rounded-2xl text-white">
+              <a href="/contact">Start your project</a>
+            </LiquidButton>
           </div>
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-500">
-          <p>© {year} TD Studios • Premium design solutions</p>
+          <p>© {year} TD Studios • Premium design for cannabis, packaging, and digital</p>
           <ul className="flex items-center gap-4">
             <li><a className="hover:text-zinc-300" href="/privacy">Privacy</a></li>
             <li><a className="hover:text-zinc-300" href="/terms">Terms</a></li>
@@ -96,4 +94,3 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
     </a>
   );
 }
-
