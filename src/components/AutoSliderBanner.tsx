@@ -49,7 +49,7 @@ export const AutoSliderBanner: React.FC = () => {
           <span className="block md:inline md:ml-4">STRATEGY</span>
           <span className="block md:inline md:ml-4">CREATIVITY</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-200 mb-8">All in one place</p>
+        <p className="text-2xl font-semibold tracking-tight text-white md:text-3xl mb-8">All in one place</p>
       </div>
     </div>
   );
