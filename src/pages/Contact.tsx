@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { PremiumButton } from '@/components/PremiumButton';
+import GlassCard from '@/components/GlassCard';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -25,13 +27,13 @@ const Contact: React.FC = () => {
   };
 
   const services = [
-    'Mylar Bag Design',
-    'Logo Design',
-    'Brand Identity',
-    'Custom Packaging',
-    'Social Media Content',
-    'Digital Assets',
-    'Custom Websites',
+    'Website Strategy & UX Architecture',
+    'Full-stack Web Development',
+    'Brand Identity & Design Systems',
+    'Product & E-commerce Launches',
+    'Social Media Marketing Programs',
+    'Content & Automation Ops',
+    'Analytics & Optimization',
     'Other',
   ];
 
@@ -62,7 +64,7 @@ const Contact: React.FC = () => {
             Get In Touch
           </h1>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Ready to elevate your cannabis brand with premium design solutions?
+            Ready to elevate your brand with premium design solutions?
             Let's discuss your project and bring your vision to life.
           </p>
         </div>
@@ -72,7 +74,7 @@ const Contact: React.FC = () => {
           <div className="lg:col-span-1 space-y-8">
             {/* Contact Cards */}
             <div className="space-y-6">
-              <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300">
+              <GlassCard className="p-6 transition-transform duration-150 ease-out">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,13 +83,13 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-1">Email</h3>
-                    <p className="text-white/60">hello@tdstudios.com</p>
-                    <p className="text-white/60">projects@tdstudios.com</p>
+                    <p className="text-white/60">tyler@tdstudiosny.com</p>
+                    <p className="text-white/60">347-485-9935</p>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
 
-              <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300">
+              <GlassCard className="p-6 transition-transform duration-150 ease-out">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,9 +102,9 @@ const Contact: React.FC = () => {
                     <p className="text-white/60">Monday - Friday, 9AM - 6PM PST</p>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
 
-              <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300">
+              <GlassCard className="p-6 transition-transform duration-150 ease-out">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,15 +114,15 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-1">Location</h3>
-                    <p className="text-white/60">Los Angeles, CA</p>
+                    <p className="text-white/60">New York City, NY</p>
                     <p className="text-white/60">Serving clients worldwide</p>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
             </div>
 
             {/* Services List */}
-            <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl">
+            <GlassCard className="p-6">
               <h3 className="text-xl font-bold text-white mb-4">Our Services</h3>
               <ul className="space-y-2">
                 {services.slice(0, -1).map((service, index) => (
@@ -132,12 +134,12 @@ const Contact: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </GlassCard>
           </div>
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl">
+            <GlassCard className="p-8">
               <h2 className="text-3xl font-bold text-white mb-8">Start Your Project</h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -290,15 +292,12 @@ const Contact: React.FC = () => {
 
                 {/* Submit Button */}
                 <div className="pt-4">
-                  <button
-                    type="submit"
-                    className="w-full px-8 py-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg hover:bg-white/30 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-white font-semibold"
-                  >
+                  <PremiumButton type="submit" className="w-full justify-center px-7 py-3">
                     Send Message
-                  </button>
+                  </PremiumButton>
                 </div>
               </form>
-            </div>
+            </GlassCard>
           </div>
         </div>
 
@@ -316,8 +315,8 @@ const Contact: React.FC = () => {
                 answer: 'Project timelines vary based on scope. Logo designs typically take 1-2 weeks, while complete brand identities can take 3-4 weeks. We always provide detailed timelines during consultation.',
               },
               {
-                question: 'Do you work with businesses outside of cannabis?',
-                answer: 'While we specialize in cannabis brands, our design expertise extends to any business looking for premium, luxury design solutions.',
+                question: 'Do you work with different industries?',
+                answer: 'Absolutely. We collaborate with consumer brands, product companies, and service teams seeking premium, luxury design solutions.',
               },
               {
                 question: 'What file formats do you provide?',

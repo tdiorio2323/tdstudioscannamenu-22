@@ -49,6 +49,10 @@ import CustomDesignForm from "./pages/CustomDesignForm";
 import DigitalAssets from "./pages/DigitalAssets";
 import CustomWebsiteForm from "./pages/CustomWebsiteForm";
 import { CartProvider } from "@/hooks/useCart";
+import Web from "./pages/Web";
+import Dev from "./pages/Dev";
+import Social from "./pages/Social";
+import Portfolio from "./pages/Portfolio";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +67,10 @@ const App = () => (
           {/* TD Studios Main Routes with CoreLayout */}
           <Route path="/" element={<CoreLayout />}>
             <Route index element={<Home />} />
+            <Route path="web" element={<Web />} />
+            <Route path="dev" element={<Dev />} />
+            <Route path="social" element={<Social />} />
+            <Route path="portfolio" element={<Portfolio />} />
             <Route path="shop" element={<Shop />} />
             <Route path="mylar-designs" element={<MylarDesigns />} />
             <Route path="custom-designs" element={<CustomDesigns />} />

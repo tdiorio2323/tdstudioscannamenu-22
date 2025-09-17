@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "@/hooks/useCart";
+import GlassCard from "@/components/GlassCard";
 
 type Props = {
   name: string;
@@ -15,16 +16,16 @@ export const ProductCard: React.FC<Props> = ({ name, image1, image2, description
   const { addItem } = useCart();
 
   return (
-    <div className="h-full flex flex-col rounded-xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300">
+    <GlassCard className="h-full flex flex-col p-0 overflow-hidden hover:bg-white/10 transition-all duration-300">
       <div
-        className="relative aspect-[4/3] overflow-hidden bg-black"
+        className="relative w-full flex-1 overflow-hidden bg-black"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         <img
           src={activeImage}
           alt={name}
-          className="w-full h-full object-cover transition-opacity duration-300 pointer-events-none select-none user-select-none"
+          className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 pointer-events-none select-none user-select-none"
           draggable={false}
           onContextMenu={(e) => e.preventDefault()}
           style={{
@@ -34,7 +35,7 @@ export const ProductCard: React.FC<Props> = ({ name, image1, image2, description
           }}
         />
       </div>
-      <div className="p-4 flex-1 flex flex-col">
+      <div className="p-4 flex flex-col gap-2">
         <h3 className="text-lg font-semibold text-white leading-tight line-clamp-2">{name}</h3>
         {description && <p className="text-white/60 text-sm mt-1 mb-3 leading-normal line-clamp-1">{description}</p>}
         <div className="mt-auto">
@@ -46,6 +47,6 @@ export const ProductCard: React.FC<Props> = ({ name, image1, image2, description
           </button>
         </div>
       </div>
-    </div>
+    </GlassCard>
   );
 };

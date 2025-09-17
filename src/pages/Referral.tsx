@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { LiquidButton } from '@/components/LiquidGlass';
+import { PremiumButton } from '@/components/PremiumButton';
+import { Copy } from 'lucide-react';
 
 const Referral: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -68,7 +71,7 @@ const Referral: React.FC = () => {
             Referral Program
           </h1>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Earn rewards by referring cannabis brands to our premium design services.
+            Earn rewards by referring ambitious brands to our premium design services.
             Join our exclusive referral program and start earning today.
           </p>
         </div>
@@ -113,12 +116,9 @@ const Referral: React.FC = () => {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full px-8 py-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg hover:bg-white/30 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-white font-semibold"
-                  >
+                  <PremiumButton type="submit" className="w-full justify-center px-7 py-3">
                     Generate My Referral Link
-                  </button>
+                  </PremiumButton>
                 </form>
               ) : (
                 <div className="space-y-6">
@@ -131,18 +131,16 @@ const Referral: React.FC = () => {
                         readOnly
                         className="flex-1 px-4 py-2 bg-black/30 backdrop-blur-sm border border-white/20 rounded text-white text-sm"
                       />
-                      <button
-                        onClick={copyToClipboard}
-                        className="px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded hover:bg-white/30 transition-all duration-300 text-white font-medium"
-                      >
-                        Copy
-                      </button>
+                      <LiquidButton onClick={copyToClipboard} size="md" className="gap-1.5">
+                        <Copy className="w-4 h-4" />
+                        <span>Copy</span>
+                      </LiquidButton>
                     </div>
                   </div>
 
                   <div className="text-center">
                     <p className="text-white/60 mb-4">
-                      Share this link with cannabis brands and earn commissions!
+                      Share this link with teams who need elevated design and earn commissions!
                     </p>
                     <button
                       onClick={() => {
@@ -173,7 +171,7 @@ const Referral: React.FC = () => {
                   {
                     step: '02',
                     title: 'Share with Brands',
-                    description: 'Share your link with cannabis brands who need design services.',
+                    description: 'Share your link with brands who need elevated design services.',
                   },
                   {
                     step: '03',
@@ -302,18 +300,18 @@ const Referral: React.FC = () => {
             </h2>
             <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
               Join our referral program and start earning commissions by sharing our premium design services
-              with cannabis brands in your network.
+              with visionary brands in your network.
             </p>
-            <button
+            <PremiumButton
+              className="mx-auto px-7 py-3"
               onClick={() => {
                 if (!isGenerated) {
                   document.getElementById('name')?.focus();
                 }
               }}
-              className="px-10 py-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg hover:bg-white/30 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] text-white font-semibold text-lg"
             >
               {isGenerated ? 'Link Generated! Start Sharing' : 'Get My Referral Link'}
-            </button>
+            </PremiumButton>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { EditableProductCard } from '@/components/EditableProductCard';
 import CardFlip from '@/components/CardFlip';
+import GlassCard from '@/components/GlassCard';
 
 // Public images under "/td slide" — one product per picture
 const files = [
@@ -227,9 +228,39 @@ export default function Shop() {
             <p className="text-white/60 mt-2">Flip to see details. Tap on mobile.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 place-items-center">
-            <CardFlip title="Curated Packs" subtitle="Only the best" description="Hand-picked digital assets and designs that perform." features={["Top sellers","Fresh drops","Tested"]} trigger="both" />
-            <CardFlip title="Fast Delivery" subtitle="Instant access" description="Immediate downloads and project onboarding." features={["Instant DL","Priority","Support"]} trigger="both" />
-            <CardFlip title="Secure Checkout" subtitle="Peace of mind" description="Simple, safe payments with receipts." features={["Trusted","Receipts","Refunds"]} trigger="both" />
+            <GlassCard className="w-full max-w-sm flex justify-center">
+              <CardFlip
+                title="Curated Packs"
+                subtitle="Only the best"
+                description="Hand-picked digital assets and designs that perform."
+                features={["Top sellers","Fresh drops","Tested"]}
+                trigger="both"
+                coverImage="/images/TD HOT TUB.png"
+                coverAlt="Curated TD Studios"
+              />
+            </GlassCard>
+            <GlassCard className="w-full max-w-sm flex justify-center">
+              <CardFlip
+                title="Fast Delivery"
+                subtitle="Instant access"
+                description="Immediate downloads and project onboarding."
+                features={["Instant DL","Priority","Support"]}
+                trigger="both"
+                coverImage="/images/TD 3D CHROME.png"
+                coverAlt="Fast TD Studios"
+              />
+            </GlassCard>
+            <GlassCard className="w-full max-w-sm flex justify-center">
+              <CardFlip
+                title="Secure Checkout"
+                subtitle="Peace of mind"
+                description="Simple, safe payments with receipts."
+                features={["Trusted","Receipts","Refunds"]}
+                trigger="both"
+                coverImage="/images/TD STUDIOS COLOMBIA.png"
+                coverAlt="Secure Checkout"
+              />
+            </GlassCard>
           </div>
         </div>
       </section>

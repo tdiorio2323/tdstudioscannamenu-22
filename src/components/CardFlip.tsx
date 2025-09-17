@@ -10,6 +10,8 @@ export interface CardFlipProps {
   description?: string;
   features?: string[];
   trigger?: "hover" | "click" | "both"; // how flipping is triggered
+  coverImage?: string;
+  coverAlt?: string;
 }
 
 export default function CardFlip({
@@ -18,6 +20,8 @@ export default function CardFlip({
   description = "Dive deep into the world of modern UI/UX design.",
   features = ["UI/UX", "Modern Design", "Tailwind CSS", "Kokonut UI"],
   trigger = "hover",
+  coverImage,
+  coverAlt,
 }: CardFlipProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const allowHover = trigger === "hover" || trigger === "both";
@@ -27,7 +31,7 @@ export default function CardFlip({
   return (
     <div
       className={cn(
-        "relative w-full max-w-[280px] h-[320px] group [perspective:2000px] mx-auto",
+        "relative w-full max-w-[280px] h-[360px] group [perspective:2000px] mx-auto",
         allowClick && "cursor-pointer"
       )}
       onMouseEnter={allowHover ? () => setIsFlipped(true) : undefined}
@@ -71,27 +75,39 @@ export default function CardFlip({
           )}
         >
           <div className="relative h-full overflow-hidden bg-gradient-to-b from-zinc-100/50 to-white/30 dark:from-zinc-900/40 dark:to-black/30">
-            <div className="absolute inset-0 flex items-start justify-center pt-24">
-              <div className="relative w-[200px] h-[100px] flex items-center justify-center">
-                {[...Array(10)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={cn(
-                      "absolute w-[50px] h-[50px]",
-                      "rounded-[140px]",
-                      "animate-[cardflipScale_3s_linear_infinite]",
-                      "opacity-0",
-                      "shadow-[0_0_50px_rgba(255,165,0,0.5)]",
-                      "group-hover:animate-[cardflipScale_2s_linear_infinite]"
-                    )}
-                    style={{ animationDelay: `${i * 0.3}s` }}
-                  />
-                ))}
+            {coverImage ? (
+              <div className="relative h-[75%] w-full">
+                <img
+                  src={coverImage}
+                  alt={coverAlt || title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/0 to-black/40" />
               </div>
-            </div>
+            ) : (
+              <div className="absolute inset-0 flex items-start justify-center pt-24">
+                <div className="relative w-[200px] h-[100px] flex items-center justify-center">
+                  {[...Array(10)].map((_, i) => (
+                    <div
+                      key={i}
+                      className={cn(
+                        "absolute w-[50px] h-[50px]",
+                        "rounded-[140px]",
+                        "animate-[cardflipScale_3s_linear_infinite]",
+                        "opacity-0",
+                        "shadow-[0_0_50px_rgba(255,165,0,0.5)]",
+                        "group-hover:animate-[cardflipScale_2s_linear_infinite]"
+                      )}
+                      style={{ animationDelay: `${i * 0.3}s` }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-5">
+          <div className="absolute bottom-0 left-0 right-0 p-5 pt-4 pb-5">
             <div className="flex items-center justify-between gap-3">
               <div className="space-y-1.5">
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-white leading-snug tracking-tighter transition-all duration-500 ease-out-expo group-hover:translate-y-[-4px]">

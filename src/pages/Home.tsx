@@ -2,21 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { AutoSliderBanner } from '@/components/AutoSliderBanner';
 import { SplashScreen } from '@/components/SplashScreen';
-import ShimmerText from '@/components/ShimmerText';
 import { LiquidGlassCard } from '@/components/LiquidGlass';
 import CardFlip from '@/components/CardFlip';
-import CommentsBox from '@/components/CommentsBox';
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Home-only entrance splash */}
       <SplashScreen />
-      {/* TD STUDIOS shimmer */}
-      <section className="px-6 pt-10">
-        <ShimmerText text="TD STUDIOS tedtx" className="text-center" />
-      </section>
-
       {/* Fullscreen entrance banner */}
       <section className="px-0 pt-0">
         <AutoSliderBanner />
@@ -30,7 +23,7 @@ const Home: React.FC = () => {
               Our Services
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Premium design solutions tailored for the cannabis industry
+              Premium design solutions tailored for high-growth brands
             </p>
           </div>
 
@@ -129,7 +122,7 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-white">Custom Websites</h3>
                 <p className="text-white/60">
-                  Professional websites and e-commerce solutions for cannabis businesses.
+                  Professional websites and e-commerce solutions for product-driven teams.
                 </p>
                 <NavLink
                   to="/custom-websites"
@@ -188,20 +181,7 @@ const Home: React.FC = () => {
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
                 Let's create something extraordinary together. Contact us to discuss your premium design needs.
               </p>
-              <NavLink
-                to="/contact"
-                className="inline-flex items-center px-10 py-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg hover:bg-white/30 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]"
-              >
-                <span className="text-lg font-semibold text-white mr-2">Start Your Project</span>
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </NavLink>
             </LiquidGlassCard>
-            <div className="mt-12">
-              <h3 className="text-2xl font-bold text-white mb-4 text-center">Leave a comment</h3>
-              <CommentsBox />
-            </div>
           </div>
         </div>
       </section>

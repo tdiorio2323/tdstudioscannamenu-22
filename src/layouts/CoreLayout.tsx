@@ -4,6 +4,7 @@ import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { CartPreview } from '@/components/CartPreview';
 import Footer from '@/components/layout/Footer';
+import ShimmerText from '@/components/ShimmerText';
 
 // robust body scroll lock (iOS-safe)
 function useBodyScrollLock(locked: boolean) {
@@ -48,16 +49,20 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
 
   const navigationLinks = [
     { to: '/', label: 'HOME' },
-    { to: '/shop', label: 'SHOP' },
-    { to: '/custom-websites', label: 'WEBSITES' },
-    { to: '/referral', label: 'REFERRAL' },
+    { to: '/web', label: 'WEB' },
+    { to: '/dev', label: 'DEV' },
+    { to: '/social', label: 'SOCIAL' },
+    { to: '/portfolio', label: 'PORTFOLIO' },
     { to: '/contact', label: 'CONTACT' },
   ];
 
+  const cartEnabledPaths = ['/shop', '/checkout'];
+  const showCartButton = cartEnabledPaths.some((path) => location.pathname.startsWith(path));
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[var(--bg)] text-white">
       {/* Header is always on top to avoid route-specific overlays capturing clicks */}
-      <header className="sticky top-0 z-[100] pointer-events-auto bg-black/80 backdrop-blur-md border-b border-white/10">
+      <header className="sticky top-0 z-[100] pointer-events-auto border-b border-white/10 bg-black/50 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 py-4 relative">
           {/* Desktop Layout */}
           <div className="hidden lg:block">
@@ -69,10 +74,13 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
                   // force client-side nav and stop any parent handlers
                   e.preventDefault(); e.stopPropagation(); navigate('/');
                 }}
-                className="text-2xl font-bold tracking-wider hover:text-white/80 transition-colors cursor-pointer"
+                className="group inline-flex cursor-pointer"
                 aria-label="Go to home"
               >
-                TD STUDIOS
+                <ShimmerText
+                  text="TD STUDIOS"
+                  className="text-2xl md:text-3xl font-bold tracking-widest transition-transform duration-300 group-hover:scale-105"
+                />
               </NavLink>
             </div>
 
@@ -84,10 +92,8 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
                   key={to}
                   to={to}
                   className={({ isActive }) =>
-                    `text-sm font-medium tracking-wide transition-all duration-300 hover:text-white hover:scale-105 ${
-                      isActive
-                        ? 'text-white border-b-2 border-white/50'
-                        : 'text-white/70'
+                    `text-sm font-medium tracking-tight transition-all duration-150 ease-out rounded-full px-3 py-1 ${
+                      isActive ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-white hover:bg-white/5'
                     }`
                   }
                 >
@@ -96,18 +102,20 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
               ))}
 
                 {/* Cart Button */}
-                <button
-                  onClick={() => setIsCartOpen(true)}
-                  className="relative px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
-                  aria-label="Open cart"
-                >
-                  <ShoppingCart className="w-5 h-5" />
-                  {totalCount > 0 && (
-                    <span className="absolute -top-2 -right-2 min-w-[20px] h-5 px-1 bg-white text-black text-xs font-bold rounded-full flex items-center justify-center">
-                      {totalCount}
-                    </span>
-                  )}
-                </button>
+                {showCartButton && (
+                  <button
+                    onClick={() => setIsCartOpen(true)}
+                    className="relative px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
+                    aria-label="Open cart"
+                  >
+                    <ShoppingCart className="w-5 h-5" />
+                    {totalCount > 0 && (
+                      <span className="absolute -top-2 -right-2 min-w-[20px] h-5 px-1 bg-white text-black text-xs font-bold rounded-full flex items-center justify-center">
+                        {totalCount}
+                      </span>
+                    )}
+                  </button>
+                )}
 
               </nav>
             </div>
@@ -119,10 +127,13 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
             <NavLink
               to="/"
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/'); }}
-              className="text-xl font-bold tracking-wider hover:text-white/80 transition-colors cursor-pointer"
+              className="group inline-flex cursor-pointer"
               aria-label="Go to home"
             >
-              TD STUDIOS
+              <ShimmerText
+                text="TD STUDIOS"
+                className="text-xl font-bold tracking-widest transition-transform duration-300 group-hover:scale-105"
+              />
             </NavLink>
 
             {/* Mobile Menu Button */}
@@ -157,7 +168,11 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
                     key={to}
                     to={to}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2 rounded-lg hover:bg-white/10 text-white"
+                  className={({ isActive }) =>
+                    `block rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                      isActive ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                    }`
+                  }
                     role="menuitem"
                   >
                     {label}
@@ -165,15 +180,17 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
                 ))}
 
                 {/* Mobile cart button */}
-                <div className="pt-2">
-                  <button
-                    onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
-                    className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white"
-                  >
-                    <ShoppingCart className="w-4 h-4" />
-                    Cart{totalCount ? ` (${totalCount})` : ''}
-                  </button>
-                </div>
+                {showCartButton && (
+                  <div className="pt-2">
+                    <button
+                      onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      Cart{totalCount ? ` (${totalCount})` : ''}
+                    </button>
+                  </div>
+                )}
               </div>
             </nav>
             </>

@@ -1,4 +1,5 @@
 import React from 'react';
+import GlassCard from '@/components/GlassCard';
 
 export type EditableItem = {
   id: string;
@@ -21,19 +22,19 @@ type Props = {
 
 export const EditableProductCard: React.FC<Props> = ({ item, selected, onToggleSelect, onChange, onDelete, draggable, onDragStart, onDragEnter, onDrop }) => {
   return (
-    <div
-      className="h-full flex flex-col rounded-xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10"
+    <GlassCard
+      className="h-full flex flex-col p-0 overflow-hidden"
       draggable={draggable}
       onDragStart={(e) => { e.dataTransfer.effectAllowed = 'move'; onDragStart?.(item.id); }}
       onDragEnter={() => onDragEnter?.(item.id)}
       onDragOver={(e) => e.preventDefault()}
       onDrop={() => onDrop?.(item.id)}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-black">
+      <div className="relative w-full flex-1 overflow-hidden bg-black">
         <img
           src={item.image1}
           alt={item.name}
-          className="w-full h-full object-cover select-none pointer-events-none user-select-none"
+          className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none user-select-none"
           draggable={false}
           onContextMenu={(e) => e.preventDefault()}
           style={{
@@ -58,7 +59,7 @@ export const EditableProductCard: React.FC<Props> = ({ item, selected, onToggleS
           Delete
         </button>
       </div>
-      <div className="p-4 flex-1 flex flex-col gap-2">
+      <div className="p-4 flex flex-col gap-2">
         <input
           value={item.name}
           onChange={(e) => onChange(item.id, { name: e.target.value })}
@@ -72,7 +73,6 @@ export const EditableProductCard: React.FC<Props> = ({ item, selected, onToggleS
           placeholder="Subtitle"
         />
       </div>
-    </div>
+    </GlassCard>
   );
 };
-

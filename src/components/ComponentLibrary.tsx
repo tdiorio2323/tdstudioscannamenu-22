@@ -267,7 +267,7 @@ export const ComponentLibrary: React.FC = () => {
 
                   <TabsContent value="code" className="mt-6">
                     <div className="bg-black/40 rounded-lg p-4">
-                      <pre className="text-green-300 text-sm overflow-x-auto whitespace-pre-wrap">
+                      <pre className="text-white/80 text-sm overflow-x-auto whitespace-pre-wrap">
                         <code>{selectedComponent.code}</code>
                       </pre>
                     </div>

@@ -97,7 +97,7 @@ export const MassCardEditor: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-4">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -351,7 +351,7 @@ const CardEditorModal: React.FC<CardEditorModalProps> = ({ card, onSave, onClose
               {/* Save Button */}
               <Button 
                 onClick={() => onSave(editedCard)}
-                className="w-full bg-green-600 hover:bg-green-700"
+                className="w-full bg-white text-black hover:bg-white/90"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save Changes

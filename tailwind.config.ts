@@ -27,6 +27,9 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				bg: 'var(--bg)',
+				surface: 'var(--surface)',
+				line: 'rgba(255,255,255,.08)',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
@@ -77,22 +80,20 @@ export default {
 				}
 			},
 			backgroundImage: {
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-primary': 'var(--grad)',
+				'gradient-dark': 'var(--grad-dark)'
 			},
 			boxShadow: {
-				'glow': 'var(--shadow-glow)',
-				'green': 'var(--shadow-green)',
-				'sm': 'var(--shadow-sm)',
-				'md': 'var(--shadow-md)',
-				'lg': 'var(--shadow-lg)',
-				'white-glow': 'var(--shadow-white-glow)'
+				glow: 'var(--glow)',
+				card: 'inset 0 1px 0 rgba(255,255,255,.03), 0 8px 30px rgba(0,0,0,.25)',
+				glass: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+			},
+			backdropBlur: {
+				glass: '16px'
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				xl: 'var(--rad)',
+				'2xl': 'var(--rad-lg)'
 			},
 			keyframes: {
 				'accordion-down': {

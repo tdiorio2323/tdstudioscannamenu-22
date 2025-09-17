@@ -260,7 +260,7 @@ export const SmartLinkScanner: React.FC = () => {
                         {scannedData.platform}
                       </span>
                       {scannedData.verified && (
-                        <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded">
+                        <span className="bg-white/10 text-white/80 px-2 py-1 rounded">
                           Verified
                         </span>
                       )}
@@ -330,7 +330,7 @@ export const SmartLinkScanner: React.FC = () => {
                   </Button>
                   <Button 
                     onClick={addToCardCollection}
-                    className="flex-1 bg-green-600 hover:bg-green-700"
+                    className="flex-1 bg-white text-black hover:bg-white/90"
                   >
                     <Download className="w-4 h-4 mr-2" />
                     Add to Collection
