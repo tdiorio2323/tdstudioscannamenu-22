@@ -2,8 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { AutoSliderBanner } from '@/components/AutoSliderBanner';
 import { SplashScreen } from '@/components/SplashScreen';
-import { LiquidGlassCard } from '@/components/LiquidGlass';
+import GlassCard from '@/components/GlassCard';
 import CardFlip from '@/components/CardFlip';
+import { Globe2, Layers3, Share2, PenTool, Images, Handshake } from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
@@ -28,131 +29,66 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Mylar Designs */}
-            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
+            {[
+              {
+                icon: <Globe2 className="h-6 w-6 text-white" />,
+                title: 'Web Experience',
+                description: 'Marketing sites, landers, and product stories engineered for clarity and conversion.',
+                cta: 'Explore Web →',
+                to: '/web',
+              },
+              {
+                icon: <Layers3 className="h-6 w-6 text-white" />,
+                title: 'Product & Platform',
+                description: 'Application architecture, dashboards, and feature delivery for scale.',
+                cta: 'View Dev →',
+                to: '/dev',
+              },
+              {
+                icon: <Share2 className="h-6 w-6 text-white" />,
+                title: 'Social Programs',
+                description: 'Editorial programming, campaign kits, and community ops that sustain growth.',
+                cta: 'See Social →',
+                to: '/social',
+              },
+              {
+                icon: <PenTool className="h-6 w-6 text-white" />,
+                title: 'Brand & Identity',
+                description: 'Design systems, visual identity, and asset libraries crafted to travel everywhere.',
+                cta: 'Custom Design →',
+                to: '/custom-designs',
+              },
+              {
+                icon: <Images className="h-6 w-6 text-white" />,
+                title: 'Digital Assets',
+                description: 'Ready-to-use content packs, templates, and downloads to accelerate launches.',
+                cta: 'Browse Assets →',
+                to: '/digital-assets',
+              },
+              {
+                icon: <Handshake className="h-6 w-6 text-white" />,
+                title: 'Partnerships',
+                description: 'Referral alliances and white-label collaborations for agencies and founders.',
+                cta: 'Partnerships →',
+                to: '/referral',
+              },
+            ].map(({ icon, title, description, cta, to }) => (
+              <GlassCard key={title} className="p-8 group">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/5 shadow-card/50">
+                  {icon}
                 </div>
-                <h3 className="text-2xl font-bold text-white">Mylar Packaging</h3>
-                <p className="text-white/60">
-                  Premium mylar bag designs that make your products stand out on dispensary shelves.
+                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-white">{title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-neutral-300">
+                  {description}
                 </p>
                 <NavLink
-                  to="/mylar-designs"
-                  className="inline-block text-white/80 hover:text-white font-medium transition-colors"
+                  to={to}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
                 >
-                  View Designs →
+                  {cta}
                 </NavLink>
-              </div>
-            </LiquidGlassCard>
-
-            {/* Custom Designs */}
-            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white">Custom Designs</h3>
-                <p className="text-white/60">
-                  Bespoke design solutions tailored to your brand's unique identity and vision.
-                </p>
-                <NavLink
-                  to="/custom-designs"
-                  className="inline-block text-white/80 hover:text-white font-medium transition-colors"
-                >
-                  Get Started →
-                </NavLink>
-              </div>
-            </LiquidGlassCard>
-
-            {/* Digital Assets */}
-            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white">Digital Assets</h3>
-                <p className="text-white/60">
-                  Social media content, logos, and digital design packs ready for download.
-                </p>
-                <NavLink
-                  to="/digital-assets"
-                  className="inline-block text-white/80 hover:text-white font-medium transition-colors"
-                >
-                  Browse Assets →
-                </NavLink>
-              </div>
-            </LiquidGlassCard>
-
-            {/* Social Content */}
-            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 4v10a2 2 0 002 2h6a2 2 0 002-2V8M7 8h10M12 12v4" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white">Social Content</h3>
-                <p className="text-white/60">
-                  Instagram posts, reels, and stories designed to grow your social presence.
-                </p>
-                <NavLink
-                  to="/social-content"
-                  className="inline-block text-white/80 hover:text-white font-medium transition-colors"
-                >
-                  View Content →
-                </NavLink>
-              </div>
-            </LiquidGlassCard>
-
-            {/* Custom Websites */}
-            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white">Custom Websites</h3>
-                <p className="text-white/60">
-                  Professional websites and e-commerce solutions for product-driven teams.
-                </p>
-                <NavLink
-                  to="/custom-websites"
-                  className="inline-block text-white/80 hover:text-white font-medium transition-colors"
-                >
-                  Learn More →
-                </NavLink>
-              </div>
-            </LiquidGlassCard>
-
-            {/* Referral Program */}
-            <LiquidGlassCard hover="glow" variant="primary" className="p-8 border border-white/10">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white">Referral Program</h3>
-                <p className="text-white/60">
-                  Earn rewards by referring new clients to our premium design services.
-                </p>
-                <NavLink
-                  to="/referral"
-                  className="inline-block text-white/80 hover:text-white font-medium transition-colors"
-                >
-                  Join Program →
-                </NavLink>
-              </div>
-            </LiquidGlassCard>
+              </GlassCard>
+            ))}
           </div>
         </div>
       </section>
