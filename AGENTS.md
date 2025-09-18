@@ -1,5 +1,7 @@
 # Repository Guidelines
 
+> **🤖 AGENT DEVELOPMENT TOOLS:** This repository includes sophisticated development automation tools. See [AGENTS-FEATURE-GUIDE.md](./AGENTS-FEATURE-GUIDE.md) for complete documentation on the agents feature, including page builders, component libraries, and CLI automation tools.
+
 ## Project Structure & Module Organization
 Source lives in `src/`, with UI in `src/components/`, route views in `src/pages/`, hooks in `src/hooks/`, and Supabase helpers in `src/supabase/`. Shared utilities belong in `src/utils.ts`, and assets should sit beside the code that uses them. Static files that must ship verbatim go in `public/`; build artifacts appear in `dist/` and should not be edited. Supabase migrations reside in `supabase/migrations/` alongside `config.toml`.
 
