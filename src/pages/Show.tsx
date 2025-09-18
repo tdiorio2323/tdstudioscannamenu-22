@@ -68,7 +68,7 @@ const Show = () => {
 
         {/* URL at bottom */}
         <div className="text-center text-white/90 text-lg sm:text-xl font-bold font-bebas-neue mt-4 relative z-10 flex-shrink-0">
-          WWW.TDSTUDIOSNY.COM
+          TD STUDIOS
         </div>
       </div>
     </div>

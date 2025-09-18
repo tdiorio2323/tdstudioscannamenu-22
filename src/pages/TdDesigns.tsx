@@ -20,8 +20,6 @@ const TdDesigns = () => {
 
   // Custom buttons for TD Designs
   const customButtons = [
-    { label: "WEBSITE", url: "https://tdstudiosny.com" },
-    { label: "CUSTOM DESIGNS", url: "https://tdstudiosny.com/custom-designs" },
     { label: "CONTACT", url: "https://t.me/tdstudioscorp" }
   ];
 

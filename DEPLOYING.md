@@ -1,7 +1,7 @@
 Deployment Guide
 
-- Production domain: https://tdstudiosny.com
 - Hosting: Vercel (project: tdstudioscannamenu-22)
+- Access via Vercel preview deployments only
 
 One-command options
 
@@ -27,7 +27,7 @@ Build and preview
 
 Notes
 
-- Preview deployments may show 401 if project preview protection is enabled. Production domain is public.
+- Preview deployments may show 401 if project preview protection is enabled.
 - Redirects/SPA rewrites are configured in `vercel.json`.
 
 Database (Neon) quick start
