@@ -54,6 +54,7 @@ import Web from "./pages/Web";
 import Dev from "./pages/Dev";
 import Social from "./pages/Social";
 import Portfolio from "./pages/Portfolio";
+import AgentsDemo from "./pages/AgentsDemo";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,7 @@ const App = () => (
             <Route path="contact" element={<Contact />} />
             <Route path="custom-design-form" element={<CustomDesignForm />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="agents-demo" element={<AgentsDemo />} />
           </Route>
 
           {/* Cannabis App Routes (without CoreLayout) */}

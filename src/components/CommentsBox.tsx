@@ -15,8 +15,8 @@ export default function CommentsBox() {
       if (!r.ok) throw new Error(`Load failed: ${r.status}`);
       const j = await r.json();
       setItems(j.items || []);
-    } catch (e: any) {
-      setError(e?.message || 'Failed to load');
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed to load');
     }
   }
 
@@ -36,8 +36,8 @@ export default function CommentsBox() {
       if (!r.ok) throw new Error(`Submit failed: ${r.status}`);
       setComment('');
       await load();
-    } catch (e: any) {
-      setError(e?.message || 'Failed to submit');
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed to submit');
     } finally {
       setLoading(false);
     }

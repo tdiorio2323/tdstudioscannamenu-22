@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PremiumButton } from '@/components/PremiumButton';
 import GlassCard from '@/components/GlassCard';
+import CommentsBox from '@/components/CommentsBox';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -303,6 +304,21 @@ const Contact: React.FC = () => {
                   </PremiumButton>
                 </div>
               </form>
+            </GlassCard>
+          </div>
+        </div>
+
+        {/* Comments Section - Agents Feature Demo */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">Questions & Comments</h2>
+            <p className="text-white/60">Leave a comment or question and we'll get back to you</p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto mb-16">
+            <GlassCard className="p-8">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">Community Comments</h3>
+              <CommentsBox />
             </GlassCard>
           </div>
         </div>
