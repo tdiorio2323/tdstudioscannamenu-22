@@ -12,6 +12,7 @@ import BrandDashboard from "./components/BrandDashboard";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Shop from "./pages/Shop";
+import Shop2 from "./pages/Shop2";
 import Checkout from "./pages/Checkout";
 import Admin from "./pages/Admin";
 import Brand from "./pages/Brand";
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="social" element={<Social />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="shop" element={<Shop />} />
+            <Route path="shop2" element={<Shop2 />} />
             <Route path="mylar-designs" element={<MylarDesigns />} />
             <Route path="custom-designs" element={<CustomDesigns />} />
             <Route path="social-content" element={<SocialMediaContent />} />

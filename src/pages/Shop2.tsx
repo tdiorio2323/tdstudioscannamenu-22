@@ -49,7 +49,7 @@ const shopPics = [
   'Disco BBG Runtz_1.png',
   'file-3x9GHEZazrVhXEzesKC3mS-Cherry Yummy Mylar Design .jpg',
   'FMLX9618.jpeg',
-  
+
   'Gemini_Generated_Image_1y6sxw1y6sxw1y6s (1).png',
   'Gemini_Generated_Image_2go2ed2go2ed2go2.png',
   'Gemini_Generated_Image_4mn3kr4mn3kr4mn3.png',
@@ -86,7 +86,7 @@ const fallbackProducts = [...tdSlideProducts, ...shopPageProducts].map((p, idx) 
 
 type Product = typeof fallbackProducts[number];
 
-export default function Shop() {
+export default function Shop2() {
   const [products, setProducts] = useState<Product[]>(fallbackProducts);
   const [editMode, setEditMode] = useState(false);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
@@ -123,7 +123,7 @@ export default function Shop() {
   // Apply saved layout (order and text) if present
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('shopLayout:v1');
+      const raw = localStorage.getItem('shop2Layout:v1');
       if (!raw) return;
       const saved = JSON.parse(raw) as { items: { id: string; name?: string; description?: string }[] };
       if (!saved?.items?.length) return;
@@ -147,7 +147,7 @@ export default function Shop() {
 
   useEffect(() => {
     // 0) Try to load a published layout override first
-    fetch('/_shop-layout.json')
+    fetch('/_shop2-layout.json')
       .then((r) => (r.ok ? r.json() : null))
       .then((layout) => {
         if (layout && Array.isArray(layout.items) && layout.items.length) {
@@ -177,7 +177,8 @@ export default function Shop() {
         const { manifest } = maybe as any;
         if (manifest && Array.isArray(manifest.items)) {
           const items = (manifest.items as string[]) || [];
-          const numbersToRemove = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
+          // Include only the removed numbers for Shop2
+          const numbersToInclude = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
           const merged = items.map((rel, idx) => {
             const file = rel.split('/').pop() || rel;
             const encoded = rel.split('/').map(encodeURIComponent).join('/');
@@ -189,7 +190,7 @@ export default function Shop() {
             } as Product;
           }).filter(p => {
             const productNumber = parseInt(p.description?.replace('number ', '') || '0');
-            return !numbersToRemove.has(productNumber);
+            return numbersToInclude.has(productNumber);
           });
           if (merged.length) {
             setProducts(appendManual(merged));
@@ -207,10 +208,10 @@ export default function Shop() {
             const shopFiles = (data.dirs['shoppagepics'] || []) as string[];
             const td = tdFiles.map((f, i) => ({ name: toTitle(f), image1: `/td%20slide/${encodeURIComponent(f)}`, image2: `/td%20slide/${encodeURIComponent(f)}` }));
             const sp = shopFiles.map((f, i) => ({ name: toTitle(f), image1: `/shoppagepics/${encodeURIComponent(f)}`, image2: `/shoppagepics/${encodeURIComponent(f)}` }));
-            const numbersToRemove = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
+            const numbersToInclude = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
             const merged = [...td, ...sp].map((p, idx) => ({ ...p, description: `number ${idx + 1}` })).filter(p => {
               const productNumber = parseInt(p.description?.replace('number ', '') || '0');
-              return !numbersToRemove.has(productNumber);
+              return numbersToInclude.has(productNumber);
             }) as Product[];
             if (merged.length) setProducts(appendManual(merged));
           })
@@ -228,20 +229,18 @@ export default function Shop() {
 
   return (
     <main className="min-h-screen py-8 px-4">
-      
+
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">Shop</h1>
-          <p className="text-white/70">Luxury strategy creativity — curated products</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">Shop 2</h1>
+          <p className="text-white/70">Additional products and designs</p>
           <div className="mt-4 flex items-center justify-center gap-3">
-            {/* Edit mode disabled
             <button
               onClick={() => { setEditMode((v) => !v); setSelected({}); setDragId(null); }}
               className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20"
             >
               {editMode ? 'Exit Edit Mode' : 'Enter Edit Mode'}
             </button>
-            */}
             {editMode && (
               <>
                 <button
@@ -251,7 +250,7 @@ export default function Shop() {
                       const blob = new Blob([JSON.stringify({ items }, null, 2)], { type: 'application/json' });
                       const a = document.createElement('a');
                       a.href = URL.createObjectURL(blob);
-                      a.download = 'shop-layout.json';
+                      a.download = 'shop2-layout.json';
                       a.click();
                       URL.revokeObjectURL(a.href);
                     } catch {}
@@ -264,7 +263,7 @@ export default function Shop() {
                   onClick={() => {
                     try {
                       const items = products.map(p => ({ id: p.image1, name: p.name, description: p.description }));
-                      localStorage.setItem('shopLayout:v1', JSON.stringify({ items, savedAt: Date.now() }));
+                      localStorage.setItem('shop2Layout:v1', JSON.stringify({ items, savedAt: Date.now() }));
                     } catch {}
                   }}
                   className="px-3 py-2 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30"
@@ -272,7 +271,7 @@ export default function Shop() {
                   Save Layout
                 </button>
                 <button
-                  onClick={() => { localStorage.removeItem('shopLayout:v1'); }}
+                  onClick={() => { localStorage.removeItem('shop2Layout:v1'); }}
                   className="px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20"
                 >
                   Clear Saved
