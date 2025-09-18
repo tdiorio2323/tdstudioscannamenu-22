@@ -98,6 +98,7 @@ export default function Shop() {
   const [editMode, setEditMode] = useState(false);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
   const [dragId, setDragId] = useState<string | null>(null);
+  const [dataSource, setDataSource] = useState<string>('fallback');
 
   // Manual additions (drop these images in public/shoppagepics with these filenames)
   const manualAdds: Product[] = [
@@ -152,13 +153,73 @@ export default function Shop() {
     } catch {}
   }, []);
 
+  // Source-agnostic filtering
+  const REMOVED_NUMBERS = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
+
+  const normalizeNumber = (n: unknown) => String(n ?? '').trim();
+  const shouldKeep = (item: { description?: string }) => {
+    const numStr = normalizeNumber(item.description?.replace('number ', '') || '0');
+    const num = parseInt(numStr);
+    return !REMOVED_NUMBERS.has(num);
+  };
+
+  const normalizeAndFilter = (items: Product[] | null | undefined) =>
+    (items ?? []).filter(shouldKeep);
+
+  // Cache-busting JSON fetch
+  const v = Date.now().toString();
+  const getJSON = async (path: string) => {
+    try {
+      const response = await fetch(`${path}?v=${v}`, { cache: 'no-store' });
+      return response.ok ? await response.json() : null;
+    } catch {
+      return null;
+    }
+  };
+
   useEffect(() => {
-    // 0) Try to load a published layout override first
-    fetch('/_shop-layout.json')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((layout) => {
-        if (layout && Array.isArray(layout.items) && layout.items.length) {
-          const fromLayout = (layout.items as { id: string; name?: string; description?: string }[]).map((it, idx) => {
+    async function loadProducts() {
+      try {
+        // Try sources in priority order with cache-busting
+        const layout = await getJSON('/_shop-layout.json');
+        const manifest = await getJSON('/_shop-manifest.json');
+
+        // Live listing fallback
+        let live = null;
+        try {
+          const url = `/__list-public?dir=${encodeURIComponent('td slide')}&dir=${encodeURIComponent('shoppagepics')}&v=${v}`;
+          const response = await fetch(url);
+          if (response.ok) {
+            const data = await response.json();
+            if (data?.dirs) {
+              const tdFiles = (data.dirs['td slide'] || []) as string[];
+              const shopFiles = (data.dirs['shoppagepics'] || []) as string[];
+              const td = tdFiles.map((f) => ({
+                name: toTitle(f),
+                image1: `/td%20slide/${encodeURIComponent(f)}`,
+                image2: `/td%20slide/${encodeURIComponent(f)}`
+              }));
+              const sp = shopFiles.map((f) => ({
+                name: toTitle(f),
+                image1: `/shoppagepics/${encodeURIComponent(f)}`,
+                image2: `/shoppagepics/${encodeURIComponent(f)}`
+              }));
+              live = [...td, ...sp].map((p, idx) => ({ ...p, description: `number ${idx + 1}` }));
+            }
+          }
+        } catch {}
+
+        // Determine source and raw data
+        const source =
+          (layout?.items?.length && 'layout') ||
+          (manifest?.items?.length && 'manifest') ||
+          (live?.length && 'live') ||
+          'fallback';
+
+        let rawProducts: Product[] = [];
+
+        if (source === 'layout') {
+          rawProducts = (layout.items as { id: string; name?: string; description?: string }[]).map((it, idx) => {
             const id = it.id.startsWith('/') ? it.id : `/${it.id}`;
             const file = id.split('/').pop() || id;
             return {
@@ -166,26 +227,11 @@ export default function Shop() {
               image1: id,
               image2: id,
               description: it.description ?? `number ${idx + 1}`,
+              price: 29.99
             } as Product;
           });
-          if (fromLayout.length) {
-            setProducts(appendManual(fromLayout));
-            return;
-          }
-        }
-
-        // 1) Try to load static manifest (works in prod and dev after build)
-        return fetch('/_shop-manifest.json')
-          .then((r) => (r.ok ? r.json() : null))
-          .then((manifest) => ({ manifest }));
-      })
-      .then((maybe) => {
-        if (!maybe) return;
-        const { manifest } = maybe as any;
-        if (manifest && Array.isArray(manifest.items)) {
-          const items = (manifest.items as string[]) || [];
-          const numbersToRemove = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
-          const merged = items.map((rel, idx) => {
+        } else if (source === 'manifest') {
+          rawProducts = (manifest.items as string[]).map((rel, idx) => {
             const file = rel.split('/').pop() || rel;
             const encoded = rel.split('/').map(encodeURIComponent).join('/');
             return {
@@ -193,37 +239,29 @@ export default function Shop() {
               image1: `/${encoded}`,
               image2: `/${encoded}`,
               description: `number ${idx + 1}`,
+              price: 29.99
             } as Product;
-          }).filter(p => {
-            const productNumber = parseInt(p.description?.replace('number ', '') || '0');
-            return !numbersToRemove.has(productNumber);
           });
-          if (merged.length) {
-            setProducts(appendManual(merged));
-            return;
-          }
+        } else if (source === 'live') {
+          rawProducts = live as Product[];
+        } else {
+          rawProducts = fallbackProducts;
         }
 
-        // 2) Fallback to dev-only live listing
-        const url = `/__list-public?dir=${encodeURIComponent('td slide')}&dir=${encodeURIComponent('shoppagepics')}`;
-        fetch(url)
-          .then((r) => (r.ok ? r.json() : null))
-          .then((data) => {
-            if (!data || !data.dirs) return;
-            const tdFiles = (data.dirs['td slide'] || []) as string[];
-            const shopFiles = (data.dirs['shoppagepics'] || []) as string[];
-            const td = tdFiles.map((f, i) => ({ name: toTitle(f), image1: `/td%20slide/${encodeURIComponent(f)}`, image2: `/td%20slide/${encodeURIComponent(f)}` }));
-            const sp = shopFiles.map((f, i) => ({ name: toTitle(f), image1: `/shoppagepics/${encodeURIComponent(f)}`, image2: `/shoppagepics/${encodeURIComponent(f)}` }));
-            const numbersToRemove = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
-            const merged = [...td, ...sp].map((p, idx) => ({ ...p, description: `number ${idx + 1}` })).filter(p => {
-              const productNumber = parseInt(p.description?.replace('number ', '') || '0');
-              return !numbersToRemove.has(productNumber);
-            }) as Product[];
-            if (merged.length) setProducts(appendManual(merged));
-          })
-          .catch(() => {});
-      })
-      .catch(() => {});
+        // Apply filtering uniformly
+        const filteredProducts = normalizeAndFilter(rawProducts);
+
+        setProducts(appendManual(filteredProducts));
+        setDataSource(source);
+
+      } catch (error) {
+        console.error('Error loading products:', error);
+        setProducts(appendManual(fallbackProducts));
+        setDataSource('fallback-error');
+      }
+    }
+
+    loadProducts();
   }, []);
 
   // Append manual items and renumber subtitles
@@ -345,6 +383,22 @@ export default function Shop() {
                 ))}
           </div>
         </section>
+      </div>
+
+      {/* Debug badge to show data source */}
+      <div style={{
+        position: 'fixed',
+        bottom: 8,
+        right: 8,
+        padding: '6px 10px',
+        fontSize: 12,
+        background: '#0008',
+        color: '#fff',
+        borderRadius: 6,
+        zIndex: 9999,
+        fontFamily: 'monospace'
+      }}>
+        DATA: {dataSource} | FILTERED: {products.length}
       </div>
     </main>
   );
