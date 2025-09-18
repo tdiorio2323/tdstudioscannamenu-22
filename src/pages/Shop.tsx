@@ -3,6 +3,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { EditableProductCard } from '@/components/EditableProductCard';
 import CardFlip from '@/components/CardFlip';
 import GlassCard from '@/components/GlassCard';
+import { BUILD_ID, SHOW_DATA_BADGE } from '@/lib/build';
 
 // Public images under "/td slide" — one product per picture
 const files = [
@@ -153,29 +154,16 @@ export default function Shop() {
     } catch {}
   }, []);
 
-  // Source-agnostic filtering
-  const REMOVED_NUMBERS = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
+  // Source-agnostic filtering API
+  const v = BUILD_ID;
+  const getJSON = async (p: string) =>
+    fetch(`${p}?v=${v}`, { cache: "no-store" }).then(r => (r.ok ? r.json() : null));
 
-  const normalizeNumber = (n: unknown) => String(n ?? '').trim();
-  const shouldKeep = (item: { description?: string }) => {
-    const numStr = normalizeNumber(item.description?.replace('number ', '') || '0');
-    const num = parseInt(numStr);
-    return !REMOVED_NUMBERS.has(num);
-  };
-
-  const normalizeAndFilter = (items: Product[] | null | undefined) =>
-    (items ?? []).filter(shouldKeep);
-
-  // Cache-busting JSON fetch
-  const v = Date.now().toString();
-  const getJSON = async (path: string) => {
-    try {
-      const response = await fetch(`${path}?v=${v}`, { cache: 'no-store' });
-      return response.ok ? await response.json() : null;
-    } catch {
-      return null;
-    }
-  };
+  type Item = { number?: string | number; description?: string };
+  const normalizeNumber = (n: unknown) => String(n ?? "").trim();
+  const REMOVED_NUMBERS = new Set<string>(['1', '2', '3', '4', '5', '11', '16', '17', '27', '35', '39', '42', '43', '44', '45', '46', '49', '51', '58', '65', '66', '79', '85', '90', '96', '100', '110', '118', '122', '123', '124', '126', '148', '152', '166', '173']);
+  const shouldKeep = (item: Item) => !REMOVED_NUMBERS.has(normalizeNumber(item.number || item.description?.replace('number ', '') || ''));
+  const normalizeAndFilter = (items?: Item[] | null) => (items ?? []).filter(shouldKeep);
 
   useEffect(() => {
     async function loadProducts() {
@@ -248,7 +236,7 @@ export default function Shop() {
           rawProducts = fallbackProducts;
         }
 
-        // Apply filtering uniformly
+        // Apply filtering uniformly to all sources
         const filteredProducts = normalizeAndFilter(rawProducts);
 
         setProducts(appendManual(filteredProducts));
@@ -256,7 +244,8 @@ export default function Shop() {
 
       } catch (error) {
         console.error('Error loading products:', error);
-        setProducts(appendManual(fallbackProducts));
+        const filteredFallback = normalizeAndFilter(fallbackProducts);
+        setProducts(appendManual(filteredFallback));
         setDataSource('fallback-error');
       }
     }
@@ -386,20 +375,22 @@ export default function Shop() {
       </div>
 
       {/* Debug badge to show data source */}
-      <div style={{
-        position: 'fixed',
-        bottom: 8,
-        right: 8,
-        padding: '6px 10px',
-        fontSize: 12,
-        background: '#0008',
-        color: '#fff',
-        borderRadius: 6,
-        zIndex: 9999,
-        fontFamily: 'monospace'
-      }}>
-        DATA: {dataSource} | FILTERED: {products.length}
-      </div>
+      {SHOW_DATA_BADGE && (
+        <div style={{
+          position: 'fixed',
+          bottom: 8,
+          right: 8,
+          padding: '6px 10px',
+          fontSize: 12,
+          background: '#0008',
+          color: '#fff',
+          borderRadius: 6,
+          zIndex: 9999,
+          fontFamily: 'monospace'
+        }}>
+          DATA: {dataSource} | FILTERED: {products.length}
+        </div>
+      )}
     </main>
   );
 }

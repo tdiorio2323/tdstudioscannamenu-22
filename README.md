@@ -71,3 +71,32 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Deployment Tips
+
+### CDN Cache Purging
+
+When deploying to production, you may need to purge the CDN cache to ensure fresh content is served:
+
+1. **Vercel Cache Purging**: Go to your Vercel deployment page and click "Purge Cache" to clear cached static assets
+2. **Manual Cache Busting**: All JSON endpoints use automatic cache-busting parameters to prevent stale data
+
+### Environment Variables
+
+For optimal cache busting and debugging:
+
+1. **NEXT_PUBLIC_BUILD_ID**: Set this to the latest commit SHA in your Vercel environment variables
+   - Go to Project Settings > Environment Variables
+   - Add `NEXT_PUBLIC_BUILD_ID` with value `$VERCEL_GIT_COMMIT_SHA`
+   - This ensures unique cache-busting parameters for each deployment
+
+2. **NEXT_PUBLIC_SHOW_DATA_BADGE**: Set to `true` to show debug information about data sources
+   - Useful for development and debugging
+   - Default: `false` (hidden in production)
+
+### How to Fix Common CI Failures
+
+- **TypeScript errors**: Run `npm run typecheck` locally to catch type issues
+- **Linting errors**: Run `npm run lint` locally and fix reported issues
+- **Build failures**: Run `npm run build` locally to test the build process
+- **Missing dependencies**: Run `npm install` to ensure all dependencies are installed

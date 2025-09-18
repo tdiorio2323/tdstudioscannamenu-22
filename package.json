@@ -8,6 +8,7 @@
     "build": "node scripts/generate-shop-manifest.mjs && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "gen:page": "node scripts/gen-page.mjs",
     "capture:all": "node scripts/capture-all-pages.js",
