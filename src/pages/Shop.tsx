@@ -79,10 +79,17 @@ const shopPageProducts = shopPics.map((f, i) => {
 });
 
 // Fallback list (used in production or if dynamic listing fails)
-const fallbackProducts = [...tdSlideProducts, ...shopPageProducts].map((p, idx) => ({
+const allProducts = [...tdSlideProducts, ...shopPageProducts].map((p, idx) => ({
   ...p,
   description: `number ${idx + 1}`,
 }));
+
+// Filter out specified numbers for main shop
+const numbersToRemove = new Set([1, 2, 3, 4, 5, 11, 16, 17, 27, 35, 39, 42, 43, 44, 45, 46, 49, 51, 58, 65, 66, 79, 85, 90, 96, 100, 110, 118, 122, 123, 124, 126, 148, 152, 166, 173]);
+const fallbackProducts = allProducts.filter(p => {
+  const productNumber = parseInt(p.description?.replace('number ', '') || '0');
+  return !numbersToRemove.has(productNumber);
+});
 
 type Product = typeof fallbackProducts[number];
 
