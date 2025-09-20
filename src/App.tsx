@@ -53,16 +53,18 @@ import Web from "./pages/Web";
 import Dev from "./pages/Dev";
 import Social from "./pages/Social";
 import Portfolio from "./pages/Portfolio";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <CartProvider>
-      <BrowserRouter>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <CartProvider>
+        <BrowserRouter>
         <Routes>
           {/* TD Studios Main Routes with CoreLayout */}
           <Route path="/" element={<CoreLayout />}>
@@ -122,6 +124,7 @@ const App = () => (
       </CartProvider>
     </TooltipProvider>
   </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
