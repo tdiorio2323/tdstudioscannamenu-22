@@ -7,15 +7,38 @@ import { Code2, CircuitBoard, Cpu, Database, Cloud, Server, Boxes, Rocket, Shiel
 
 export default function Dev() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 space-y-12">
-      <LuxeHero
-        tag="Development"
-        title="Application & Platform Engineering"
-        subtitle="Strategy, engineering, and design collaborating to deliver performant digital products."
-        cta={{ label: 'Book a build sprint', href: '/contact' }}
-        imageSrc="/images/para.webp"
-        imageAlt="TD Studios development"
-      />
+    <div className="min-h-screen bg-black text-white">
+      <section className="relative overflow-hidden h-[60vh]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/para.webp"
+            alt="TD Studios development"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex max-w-min rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] uppercase tracking-wider text-neutral-300 mb-6">
+              Development
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold">Application & Platform Engineering</h1>
+            <p className="mt-6 text-xl text-white/70 max-w-3xl mx-auto">
+              Strategy, engineering, and design collaborating to deliver performant digital products.
+            </p>
+            <div className="mt-8">
+              <PremiumButton as="a" href="/contact" className="px-7 py-3">
+                Book a build sprint
+              </PremiumButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 pb-12 space-y-12">
 
       <div className="grid gap-6 md:grid-cols-3">
         <LuxeCard title="Product Discovery">
@@ -119,6 +142,7 @@ export default function Dev() {
         <PremiumButton as="a" href="/contact" className="px-7 py-3">
           Plan your release
         </PremiumButton>
+      </div>
       </div>
     </div>
   );

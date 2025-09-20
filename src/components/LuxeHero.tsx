@@ -14,21 +14,15 @@ export function LuxeHero({ title, subtitle, tag, cta, imageSrc, imageAlt }: Luxe
     <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface/80 shadow-card">
       <div className="relative h-[360px] w-full md:h-[460px]">
         {imageSrc ? (
-          <>
-            <img
-              src={imageSrc}
-              alt={imageAlt ?? ''}
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-black/30" />
-          </>
+          <img
+            src={imageSrc}
+            alt={imageAlt ?? ''}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="eager"
+          />
         ) : (
           <div className="absolute inset-0 bg-[image:var(--grad-dark)]" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60" />
-        <div className="absolute inset-0 [mask-image:radial-gradient(900px_320px_at_70%_0%,black,transparent)] pointer-events-none" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(1200px_300px_at_50%_105%,rgba(94,234,212,.05),transparent)]" />
       </div>
 
       <div className="absolute inset-0 flex items-end">

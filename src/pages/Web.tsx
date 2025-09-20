@@ -6,15 +6,38 @@ import GlassCard from '@/components/GlassCard';
 
 export default function Web() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 space-y-12">
-      <LuxeHero
-        tag="Web"
-        title="Web Experiences That Convert"
-        subtitle="Strategy, performance, and story-first content engineered for clarity and velocity."
-        cta={{ label: 'Start your project', href: '/contact' }}
-        imageSrc="/images/Luxury House.jpg"
-        imageAlt="TD Studios web showcase"
-      />
+    <div className="min-h-screen bg-black text-white">
+      <section className="relative overflow-hidden h-[60vh]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/luxe1.jpg"
+            alt="TD Studios web showcase"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex max-w-min rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] uppercase tracking-wider text-neutral-300 mb-6">
+              Web
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold">Web Experiences That Convert</h1>
+            <p className="mt-6 text-xl text-white/70 max-w-3xl mx-auto">
+              Strategy, performance, and story-first content engineered for clarity and velocity.
+            </p>
+            <div className="mt-8">
+              <PremiumButton as="a" href="/contact" className="px-7 py-3">
+                Start your project
+              </PremiumButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 pb-12 space-y-12">
 
       <div className="grid gap-6 md:grid-cols-3">
         <LuxeCard title="Conversion-Ready Landers">
@@ -93,6 +116,7 @@ export default function Web() {
         <PremiumButton as="a" href="/contact" className="px-7 py-3">
           Start your project
         </PremiumButton>
+      </div>
       </div>
     </div>
   );

@@ -6,15 +6,38 @@ import GlassCard from '@/components/GlassCard';
 
 export default function Social() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 space-y-12">
-      <LuxeHero
-        tag="Social"
-        title="Social Media Marketing"
-        subtitle="Story-driven content, community programming, and campaigns that keep your brand in the feed."
-        cta={{ label: 'Schedule a content sprint', href: '/contact' }}
-        imageSrc="/images/rose.jpg"
-        imageAlt="TD Studios social campaign"
-      />
+    <div className="min-h-screen bg-black text-white">
+      <section className="relative overflow-hidden h-[60vh]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/RED CHROME.jpg"
+            alt="TD Studios social campaign"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex max-w-min rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] uppercase tracking-wider text-neutral-300 mb-6">
+              Social
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold">Social Media Marketing</h1>
+            <p className="mt-6 text-xl text-white/70 max-w-3xl mx-auto">
+              Story-driven content, community programming, and campaigns that keep your brand in the feed.
+            </p>
+            <div className="mt-8">
+              <PremiumButton as="a" href="/contact" className="px-7 py-3">
+                Schedule a content sprint
+              </PremiumButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 pb-12 space-y-12">
 
       <div className="grid gap-6 md:grid-cols-3">
         <LuxeCard title="Campaign Kits">
@@ -94,6 +117,7 @@ export default function Social() {
         <PremiumButton as="a" href="/contact" className="px-7 py-3">
           Build your social engine
         </PremiumButton>
+      </div>
       </div>
     </div>
   );
