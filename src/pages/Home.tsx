@@ -4,7 +4,7 @@ import { AutoSliderBanner } from '@/components/AutoSliderBanner';
 import { SplashScreen } from '@/components/SplashScreen';
 import GlassCard from '@/components/GlassCard';
 import CardFlip from '@/components/CardFlip';
-import { LiquidGlassCard } from '@/components/LiquidGlass';
+import { LiquidGlassCard } from '@/components/SimpleLiquidGlassCard';
 import { Globe2, Layers3, Share2, PenTool, Images, Handshake } from 'lucide-react';
 
 const Home: React.FC = () => {
