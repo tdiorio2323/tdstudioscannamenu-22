@@ -12,6 +12,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen">
       {/* Home-only entrance splash */}
       <SplashScreen />
+
       {/* Fullscreen entrance banner */}
       <section className="px-0 pt-0">
         <AutoSliderBanner />
@@ -108,7 +109,7 @@ const Home: React.FC = () => {
                 title="Design Systems"
                 subtitle="Consistent, scalable UI"
                 description="We craft reusable UI libraries and robust design tokens."
-                features={["Tokens","Components","Docs","Themeable"]}
+                features={["Tokens", "Components", "Docs", "Themeable"]}
                 coverImage="/images/TD HOT TUB.png"
                 coverAlt="Design systems"
               />
@@ -116,7 +117,7 @@ const Home: React.FC = () => {
                 title="E‑commerce"
                 subtitle="Convert with speed"
                 description="Fast product pages, optimized checkouts, and analytics built-in."
-                features={["Shop","Cart","Checkout","Analytics"]}
+                features={["Shop", "Cart", "Checkout", "Analytics"]}
                 coverImage="/images/TD 3D CHROME.png"
                 coverAlt="E-commerce"
               />
@@ -124,7 +125,7 @@ const Home: React.FC = () => {
                 title="Brand Kits"
                 subtitle="Your identity everywhere"
                 description="Logos, palettes, typography, and social templates that align."
-                features={["Logo","Palette","Type","Templates"]}
+                features={["Logo", "Palette", "Type", "Templates"]}
                 coverImage="/images/TD STUDIOS COLOMBIA.png"
                 coverAlt="Brand kits"
               />
@@ -132,7 +133,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="max-w-4xl mx-auto text-center">
-            <LiquidGlassCard hover="glow" variant="primary" className="p-12 border border-white/20">
+            <LiquidGlassCard className="p-12 border border-white/20">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Ready to Elevate Your Brand?
               </h2>

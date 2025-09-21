@@ -35,9 +35,8 @@ export const SplashScreen: React.FC = () => {
 
   return (
     <div
-      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black transition-opacity duration-500 ${
-        isComplete ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
+      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black transition-opacity duration-500 ${isComplete ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
     >
       <div className="relative w-64 h-24 mb-8">
         <img src="/TD STUDIOS WHITE TEXT.png" alt="TD Studios" className="object-contain w-full h-full" loading="eager" />
@@ -46,7 +45,10 @@ export const SplashScreen: React.FC = () => {
       <div className="font-mono text-white mb-4 h-6">{`LOADING_SYSTEM: ${matrixText}`}</div>
 
       <div className="w-64 h-1 bg-white/20 rounded-full overflow-hidden">
-        <div className="h-full bg-white transition-all duration-100 ease-out" style={{ width: `${progress}%` }} />
+        <div
+          className="h-full bg-white transition-all duration-100 ease-out"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
       <div className="mt-2 font-mono text-sm text-white">{`${progress}%`}</div>

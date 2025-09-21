@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Repeat2 } from "lucide-react";
@@ -37,19 +35,18 @@ export default function CardFlip({
       onMouseEnter={allowHover ? () => setIsFlipped(true) : undefined}
       onMouseLeave={allowHover ? () => setIsFlipped(false) : undefined}
       onClick={allowClick ? toggle : undefined}
-      role={allowClick ? "button" : undefined}
+      role="button"
       tabIndex={allowClick ? 0 : -1}
       onKeyDown={
         allowClick
           ? (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                toggle();
-              }
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggle();
             }
+          }
           : undefined
       }
-      aria-pressed={allowClick ? isFlipped : undefined}
       aria-label="Flip card"
     >
       <div
@@ -113,7 +110,7 @@ export default function CardFlip({
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-white leading-snug tracking-tighter transition-all duration-500 ease-out-expo group-hover:translate-y-[-4px]">
                   {title}
                 </h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-200 line-clamp-2 tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-4px] delay-[50ms]">
+                <p className="text-sm text-zinc-600 dark:text-zinc-200 line-clamp-2 tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-4px] delay-&lsqb;50ms&rsqb;">
                   {subtitle}
                 </p>
               </div>
@@ -158,7 +155,7 @@ export default function CardFlip({
                   style={{
                     transform: isFlipped ? "translateX(0)" : "translateX(-10px)",
                     opacity: isFlipped ? 1 : 0,
-                    transitionDelay: `${index * 100 + 200}ms`,
+                    transitionDelay: `${index * 100 + 200}ms`
                   }}
                 >
                   <ArrowRight className="w-3 h-3 text-orange-500" />

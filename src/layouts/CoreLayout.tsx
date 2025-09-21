@@ -6,6 +6,10 @@ import { CartPreview } from '@/components/CartPreview';
 import Footer from '@/components/layout/Footer';
 import ShimmerText from '@/components/ShimmerText';
 
+interface CoreLayoutProps {
+  children?: React.ReactNode;
+}
+
 // robust body scroll lock (iOS-safe)
 function useBodyScrollLock(locked: boolean) {
   useEffect(() => {
@@ -87,19 +91,18 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
             {/* Navigation Row */}
             <div className="flex justify-center">
               <nav className="flex items-center space-x-8">
-              {navigationLinks.map(({ to, label }) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  className={({ isActive }) =>
-                    `text-sm font-medium tracking-tight transition-all duration-150 ease-out rounded-full px-3 py-1 ${
-                      isActive ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-white hover:bg-white/5'
-                    }`
-                  }
-                >
-                  {label}
-                </NavLink>
-              ))}
+                {navigationLinks.map(({ to, label }) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    className={({ isActive }) =>
+                      `text-sm font-medium tracking-tight transition-all duration-150 ease-out rounded-full px-3 py-1 ${isActive ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                      }`
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                ))}
 
                 {/* Cart Button */}
                 {showCartButton && (
@@ -160,39 +163,37 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
               />
               <nav
                 className="lg:hidden absolute left-0 right-0 top-full z-[95] bg-black/95 backdrop-blur-md border-t border-white/10"
-                role="menu"
               >
-              <div className="space-y-2 p-4">
-                {navigationLinks.map(({ to, label }) => (
-                  <NavLink
-                    key={to}
-                    to={to}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    `block rounded-full px-3 py-2 text-sm font-medium transition-colors ${
-                      isActive ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-white hover:bg-white/5'
-                    }`
-                  }
-                    role="menuitem"
-                  >
-                    {label}
-                  </NavLink>
-                ))}
-
-                {/* Mobile cart button */}
-                {showCartButton && (
-                  <div className="pt-2">
-                    <button
-                      onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
-                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white"
+                <div className="space-y-2 p-4">
+                  {navigationLinks.map(({ to, label }) => (
+                    <NavLink
+                      key={to}
+                      to={to}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `block rounded-full px-3 py-2 text-sm font-medium transition-colors ${isActive ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                        }`
+                      }
+                      role="menuitem"
                     >
-                      <ShoppingCart className="w-4 h-4" />
-                      Cart{totalCount ? ` (${totalCount})` : ''}
-                    </button>
-                  </div>
-                )}
-              </div>
-            </nav>
+                      {label}
+                    </NavLink>
+                  ))}
+
+                  {/* Mobile cart button */}
+                  {showCartButton && (
+                    <div className="pt-2">
+                      <button
+                        onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
+                        className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        Cart{totalCount ? ` (${totalCount})` : ''}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </nav>
             </>
           )}
         </div>
