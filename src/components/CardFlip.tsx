@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Repeat2 } from "lucide-react";
 
@@ -22,9 +23,15 @@ export default function CardFlip({
   coverAlt,
 }: CardFlipProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const navigate = useNavigate();
   const allowHover = trigger === "hover" || trigger === "both";
   const allowClick = trigger === "click" || trigger === "both";
   const toggle = () => setIsFlipped((v) => !v);
+
+  const handleStartToday = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card flip when clicking button
+    navigate('/contact');
+  };
 
   return (
     <div
@@ -178,6 +185,7 @@ export default function CardFlip({
                 "dark:hover:from-orange-500/20 dark:hover:via-orange-500/10 dark:hover:to-transparent",
                 "hover:scale-[1.02] hover:cursor-pointer"
               )}
+              onClick={handleStartToday}
             >
               <span className="text-sm font-medium text-zinc-900 dark:text-white transition-colors duration-300 group-hover/start:text-orange-600 dark:group-hover/start:text-orange-400">
                 Start today
