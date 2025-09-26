@@ -30,7 +30,12 @@ export default function CardFlip({
 
   const handleStartToday = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card flip when clicking button
-    navigate('/contact');
+    // Navigate and scroll to top
+    navigate('/contact', { replace: false });
+    // Ensure scroll to top after navigation completes
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }, 50);
   };
 
   return (
