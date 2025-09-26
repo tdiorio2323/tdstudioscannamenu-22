@@ -4,10 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- `npm run dev` - Start Vite development server (port 8081, or next available)
+- `npm run dev` - Start Vite development server (port 8081 by default, configurable via PORT env var)
 - `npm run build` - Production build (auto-generates shop manifest before build)
 - `npm run build:dev` - Development build without optimizations
 - `npm run lint` - Run ESLint with React hooks rules
+- `npx tsc --noEmit` - Type check without emitting files
 - `npm run preview` - Preview production build locally
 - `npm i` - Install dependencies
 - `npm run gen:page` - Generate new page with automatic routing setup
@@ -166,3 +167,28 @@ The dual nature requires careful routing: main business pages use CoreLayout for
 - `supabase/` - Database configuration and migrations
 - `scripts/` - Automation tools for page generation, asset processing, deployment
 - `public/td slide/` and `public/shoppagepics/` - Product image directories
+## SEO & Metadata
+
+- **Helmet**: Uses `react-helmet-async` for dynamic `<title>`, canonical, OG, and Twitter cards.  
+- **Product Pages**: Each `/mylars/:slug` injects:
+  - `<title>` and `<meta>` tags for name, description, image
+  - JSON-LD Product schema with slug, price, image, and availability  
+- **Checklist**:
+  - Verify `<title>` changes per slug in DevTools
+  - Test with [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and [X Card Validator](https://cards-dev.twitter.com/validator)
+
+## Sitemap & Robots
+
+- **Script**: `npm run sitemap` auto-generates `public/sitemap.xml` from Mylar product slugs.  
+- **Robots.txt**: Located at `public/robots.txt` and references the sitemap.  
+- **Deploy Note**: Always re-run sitemap generation before pushing new slugs.
+
+## Testing
+
+- **Typecheck**: `npm run typecheck`  
+- **Lint**: `npm run lint`  
+- **Playwright (planned)**:
+  - Smoke test for `/mylars/:slug`
+  - Verifies `<title>`, OG image, and JSON-LD are present
+  - Run with `npx playwright test`
+
