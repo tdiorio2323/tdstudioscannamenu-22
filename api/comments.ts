@@ -39,8 +39,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
-  } catch (e: any) {
-    return res.status(500).json({ error: 'DB error', message: e?.message || String(e) });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e);
+    return res.status(500).json({ error: 'DB error', message });
   }
 }
 

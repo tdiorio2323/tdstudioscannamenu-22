@@ -64,7 +64,7 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
   const showCartButton = cartEnabledPaths.some((path) => location.pathname.startsWith(path));
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-white">
+    <div className="min-h-screen text-white">
       {/* Header is always on top to avoid route-specific overlays capturing clicks */}
       <header className="sticky top-0 z-[100] pointer-events-auto border-b border-white/10 bg-black/50 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 py-4 relative">

@@ -26,6 +26,11 @@ body {
   position: relative;
   min-height: 100vh;
   color: rgb(229, 231, 235);
+  background-image: url('/blue-black-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body::before {
@@ -40,7 +45,12 @@ body::before {
 
 @layer base {
   body {
-    @apply bg-[var(--bg)] text-[15px] md:text-[16px] text-neutral-300 leading-relaxed antialiased;
+    @apply text-[15px] md:text-[16px] text-neutral-300 leading-relaxed antialiased;
+    background-image: url('/blue-black-background.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -332,7 +342,12 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-image: url('/blue-black-background.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
   }
 }
 
@@ -360,4 +375,23 @@ All colors MUST be HSL.
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Image clarity and sharpness enhancements */
+.image-enhanced {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  filter: contrast(1.05) brightness(1.02) saturate(1.08);
+}
+
+.hero-image {
+  image-rendering: optimizeQuality;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }

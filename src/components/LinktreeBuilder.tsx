@@ -194,10 +194,11 @@ export const LinktreeBuilder = () => {
         title: "Page Generated",
         description: `Code for ${config.pageName} copied to clipboard. Create /src/pages/${config.pageName}.tsx manually.`,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Failed to generate page";
       toast({
         title: "Error",
-        description: error.message || "Failed to generate page",
+        description: message,
         variant: "destructive"
       });
     }

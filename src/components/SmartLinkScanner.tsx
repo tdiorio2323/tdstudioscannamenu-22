@@ -35,24 +35,24 @@ export const SmartLinkScanner: React.FC = () => {
     buttons: [] as ButtonData[]
   });
 
-  const detectPlatform = (url: string): { platform: string; type: string } => {
+  const detectPlatform = (url: string): { platform: string; type: 'profile' | 'website' | 'social' } => {
     const domain = new URL(url).hostname.toLowerCase();
     
     const platforms = {
-      'instagram.com': { platform: 'Instagram', type: 'profile' },
-      'twitter.com': { platform: 'Twitter', type: 'profile' },
-      'x.com': { platform: 'X (Twitter)', type: 'profile' },
-      'tiktok.com': { platform: 'TikTok', type: 'profile' },
-      't.me': { platform: 'Telegram', type: 'profile' },
-      'youtube.com': { platform: 'YouTube', type: 'profile' },
-      'linkedin.com': { platform: 'LinkedIn', type: 'profile' },
-      'facebook.com': { platform: 'Facebook', type: 'profile' },
-      'snapchat.com': { platform: 'Snapchat', type: 'profile' },
-      'discord.gg': { platform: 'Discord', type: 'social' },
-      'twitch.tv': { platform: 'Twitch', type: 'profile' },
-      'onlyfans.com': { platform: 'OnlyFans', type: 'profile' },
-      'linktr.ee': { platform: 'Linktree', type: 'social' },
-      'bio.link': { platform: 'Bio.link', type: 'social' }
+      'instagram.com': { platform: 'Instagram', type: 'profile' as const },
+      'twitter.com': { platform: 'Twitter', type: 'profile' as const },
+      'x.com': { platform: 'X (Twitter)', type: 'profile' as const },
+      'tiktok.com': { platform: 'TikTok', type: 'profile' as const },
+      't.me': { platform: 'Telegram', type: 'profile' as const },
+      'youtube.com': { platform: 'YouTube', type: 'profile' as const },
+      'linkedin.com': { platform: 'LinkedIn', type: 'profile' as const },
+      'facebook.com': { platform: 'Facebook', type: 'profile' as const },
+      'snapchat.com': { platform: 'Snapchat', type: 'profile' as const },
+      'discord.gg': { platform: 'Discord', type: 'social' as const },
+      'twitch.tv': { platform: 'Twitch', type: 'profile' as const },
+      'onlyfans.com': { platform: 'OnlyFans', type: 'profile' as const },
+      'linktr.ee': { platform: 'Linktree', type: 'social' as const },
+      'bio.link': { platform: 'Bio.link', type: 'social' as const }
     };
 
     for (const [domain_check, info] of Object.entries(platforms)) {
@@ -71,25 +71,25 @@ export const SmartLinkScanner: React.FC = () => {
       
       // Instagram: instagram.com/username
       if (url.includes('instagram.com')) {
-        const match = path.match(/\/([^\/\?]+)/);
+        const match = path.match(/\/([^/?]+)/);
         return match ? `@${match[1]}` : '';
       }
       
       // Twitter: twitter.com/username or x.com/username
       if (url.includes('twitter.com') || url.includes('x.com')) {
-        const match = path.match(/\/([^\/\?]+)/);
+        const match = path.match(/\/([^/?]+)/);
         return match ? `@${match[1]}` : '';
       }
       
       // TikTok: tiktok.com/@username
       if (url.includes('tiktok.com')) {
-        const match = path.match(/\/@([^\/\?]+)/);
+        const match = path.match(/\/@([^/?]+)/);
         return match ? `@${match[1]}` : '';
       }
       
       // YouTube: youtube.com/@username or youtube.com/c/username
       if (url.includes('youtube.com')) {
-        const match = path.match(/\/(@[^\/\?]+|c\/[^\/\?]+)/);
+        const match = path.match(/\/(@[^\/?]+|c\/[^\/?]+)/);
         return match ? (match[1].startsWith('@') ? match[1] : `@${match[1].replace('c/', '')}`) : '';
       }
       
@@ -119,7 +119,7 @@ export const SmartLinkScanner: React.FC = () => {
         description: `${platform} profile`,
         image: 'https://via.placeholder.com/400x400?text=Profile+Image',
         siteName: platform,
-        type: type as any,
+        type: type,
         platform,
         username,
         followers: '10.2K',

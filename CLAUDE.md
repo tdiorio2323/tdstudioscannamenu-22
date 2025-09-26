@@ -169,26 +169,21 @@ The dual nature requires careful routing: main business pages use CoreLayout for
 - `public/td slide/` and `public/shoppagepics/` - Product image directories
 ## SEO & Metadata
 
-- **Helmet**: Uses `react-helmet-async` for dynamic `<title>`, canonical, OG, and Twitter cards.  
-- **Product Pages**: Each `/mylars/:slug` injects:
-  - `<title>` and `<meta>` tags for name, description, image
-  - JSON-LD Product schema with slug, price, image, and availability  
-- **Checklist**:
-  - Verify `<title>` changes per slug in DevTools
-  - Test with [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and [X Card Validator](https://cards-dev.twitter.com/validator)
+- **Meta Tags**: Manual meta tag management in HTML head (react-helmet-async not currently installed)
+- **Product Pages**: Static meta tags in index.html, dynamic SEO implementation planned
+- **Future**: JSON-LD Product schema for `/mylars/:slug` routes with price/availability data
+- **Testing**: Verify meta tags with [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and [X Card Validator](https://cards-dev.twitter.com/validator)
 
 ## Sitemap & Robots
 
-- **Script**: `npm run sitemap` auto-generates `public/sitemap.xml` from Mylar product slugs.  
-- **Robots.txt**: Located at `public/robots.txt` and references the sitemap.  
-- **Deploy Note**: Always re-run sitemap generation before pushing new slugs.
+- **Sitemap**: `public/sitemap.xml` exists (manual sitemap generation script not yet implemented)
+- **Robots.txt**: Located at `public/robots.txt` and references the sitemap
+- **Future**: Automated sitemap generation from Mylar product slugs
 
 ## Testing
 
-- **Typecheck**: `npm run typecheck`  
-- **Lint**: `npm run lint`  
-- **Playwright (planned)**:
-  - Smoke test for `/mylars/:slug`
-  - Verifies `<title>`, OG image, and JSON-LD are present
-  - Run with `npx playwright test`
+- **Typecheck**: `npx tsc --noEmit` (no npm script alias currently)
+- **Lint**: `npm run lint`
+- **Playwright**: Installed for screenshot automation (`npm run capture:all`)
+- **Future**: Automated testing for dynamic routes and SEO validation
 

@@ -9,8 +9,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const rows = await sql`SELECT version()`;
     const version = rows?.[0]?.version as string | undefined;
     return res.status(200).json({ version });
-  } catch (e: any) {
-    return res.status(500).json({ error: 'DB error', message: e?.message || String(e) });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e);
+    return res.status(500).json({ error: 'DB error', message });
   }
 }
 

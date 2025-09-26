@@ -11,8 +11,8 @@ interface ComponentConfig {
   id: string;
   name: string;
   category: string;
-  component: React.ComponentType<any>;
-  defaultProps: any;
+  component: React.ComponentType<Record<string, unknown>>;
+  defaultProps: Record<string, unknown>;
   customizableProps: Array<{
     name: string;
     type: 'text' | 'color' | 'number' | 'boolean' | 'select';
@@ -110,12 +110,12 @@ const componentLibrary: ComponentConfig[] = [
 
 export const ComponentLibrary: React.FC = () => {
   const [selectedComponent, setSelectedComponent] = useState<ComponentConfig>(componentLibrary[0]);
-  const [customProps, setCustomProps] = useState<any>(selectedComponent.defaultProps);
+  const [customProps, setCustomProps] = useState<Record<string, unknown>>(selectedComponent.defaultProps);
   const [activeTab, setActiveTab] = useState('preview');
 
   const categories = [...new Set(componentLibrary.map(c => c.category))];
 
-  const updateProp = (propName: string, value: any) => {
+  const updateProp = (propName: string, value: string) => {
     setCustomProps({ ...customProps, [propName]: value });
   };
 

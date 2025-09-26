@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { EditableProductCard } from '@/components/EditableProductCard';
 import CardFlip from '@/components/CardFlip';
@@ -22,7 +22,7 @@ const files = [
 const toTitle = (name: string) =>
   name
     .replace(/\.[^/.]+$/, '')
-    .replace(/[\-_]+/g, ' ')
+    .replace(/[-_]+/g, ' ')
     .replace(/\s+/g, ' ')
     .replace(/\b\w/g, (c) => c.toUpperCase());
 
@@ -93,7 +93,7 @@ export default function Shop() {
   const [dragId, setDragId] = useState<string | null>(null);
 
   // Manual additions (drop these images in public/shoppagepics with these filenames)
-  const manualAdds: Product[] = [
+  const manualAdds: Product[] = useMemo(() => [
     {
       name: 'Mistic Bahama Blueberry',
       image1: '/mistic-bahama-blueberry.jpg',
@@ -118,7 +118,14 @@ export default function Shop() {
       image2: '/mistic-grape-strawberry.jpg',
       description: '',
     },
-  ];
+  ], []);
+
+  // Append manual items and renumber subtitles
+  const appendManual = useCallback((list: Product[]): Product[] => {
+    const existing = new Set(list.map((p) => p.image1));
+    const appended = [...list, ...manualAdds.filter((m) => !existing.has(m.image1))];
+    return appended.map((p, idx) => ({ ...p, description: `number ${idx + 1}` }));
+  }, [manualAdds]);
 
   // Apply saved layout (order and text) if present
   useEffect(() => {
@@ -142,7 +149,9 @@ export default function Shop() {
           .filter(Boolean) as Product[];
         return [...ordered, ...notSaved];
       });
-    } catch {}
+    } catch (error) {
+      console.error('Failed to load shop layout from localStorage', error);
+    }
   }, []);
 
   useEffect(() => {
@@ -174,7 +183,7 @@ export default function Shop() {
       })
       .then((maybe) => {
         if (!maybe) return;
-        const { manifest } = maybe as any;
+        const { manifest } = maybe as { manifest: { items: string[] } };
         if (manifest && Array.isArray(manifest.items)) {
           const items = (manifest.items as string[]) || [];
           const merged = items.map((rel, idx) => {
@@ -206,17 +215,10 @@ export default function Shop() {
             const merged = [...td, ...sp].map((p, idx) => ({ ...p, description: `number ${idx + 1}` })) as Product[];
             if (merged.length) setProducts(appendManual(merged));
           })
-          .catch(() => {});
+          .catch((error) => { console.error('Failed to fetch dev-only live listing', error); });
       })
-      .catch(() => {});
-  }, []);
-
-  // Append manual items and renumber subtitles
-  function appendManual(list: Product[]): Product[] {
-    const existing = new Set(list.map((p) => p.image1));
-    const appended = [...list, ...manualAdds.filter((m) => !existing.has(m.image1))];
-    return appended.map((p, idx) => ({ ...p, description: `number ${idx + 1}` }));
-  }
+      .catch((error) => { console.error('Failed to load shop products', error); });
+  }, [appendManual]);
 
   return (
     <main className="min-h-screen py-8 px-4">
@@ -287,7 +289,9 @@ export default function Shop() {
                       a.download = 'shop-layout.json';
                       a.click();
                       URL.revokeObjectURL(a.href);
-                    } catch {}
+                    } catch (error) {
+                      console.error('Failed to export shop layout', error);
+                    }
                   }}
                   className="px-3 py-2 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30"
                 >
@@ -298,7 +302,9 @@ export default function Shop() {
                     try {
                       const items = products.map(p => ({ id: p.image1, name: p.name, description: p.description }));
                       localStorage.setItem('shopLayout:v1', JSON.stringify({ items, savedAt: Date.now() }));
-                    } catch {}
+                    } catch (error) {
+                      console.error('Failed to save shop layout to localStorage', error);
+                    }
                   }}
                   className="px-3 py-2 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30"
                 >

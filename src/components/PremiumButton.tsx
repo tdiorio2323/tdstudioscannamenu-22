@@ -8,12 +8,14 @@ export type PremiumButtonProps<T extends ElementType = 'button'> = {
   children: ReactNode;
 } & Omit<ComponentPropsWithoutRef<T>, 'as' | 'className' | 'children'>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PremiumButton = forwardRef<HTMLElement, PremiumButtonProps<any>>(
   ({ as, className, children, ...props }, ref) => {
     const Component = (as ?? 'button') as ElementType;
 
     return (
       <Component
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         className={cn(
           'relative inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-medium',

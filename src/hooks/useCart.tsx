@@ -30,14 +30,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) setItems(parsed);
       }
-    } catch {}
+    } catch (error) {
+      console.error('Failed to load cart from localStorage', error);
+    }
   }, []);
 
   // Persist to localStorage
   useEffect(() => {
     try {
       localStorage.setItem('cart:v1', JSON.stringify(items));
-    } catch {}
+    } catch (error) {
+      console.error('Failed to save cart to localStorage', error);
+    }
   }, [items]);
 
   const addItem: CartContextValue['addItem'] = ({ name, image, subtitle }) => {

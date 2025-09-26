@@ -121,10 +121,11 @@ export const AuthCardBuilder = () => {
         title: "Auth Page Created",
         description: `${config.pageName} → ${config.route}`,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Failed to create auth page";
       toast({
         title: "Error",
-        description: error.message || "Failed to create auth page",
+        description: message,
         variant: "destructive"
       });
     }

@@ -56,8 +56,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.status(resp.status).setHeader('Content-Type', resp.headers.get('content-type') || 'text/plain');
       return res.send(text);
     }
-  } catch (e: any) {
-    return res.status(500).json({ error: 'Failed proxying to n8n', message: e?.message || String(e) });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e);
+    return res.status(500).json({ error: 'Failed proxying to n8n', message });
   }
 }
 
