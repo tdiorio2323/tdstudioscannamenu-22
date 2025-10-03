@@ -32,12 +32,19 @@ const Portfolio: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {placeholders.map((slot) => (
+            <LiquidGlassCard
+              hover="glow"
+              variant="primary"
+              className="aspect-[4/5] border border-white/10 flex items-center justify-center text-white/30 text-sm uppercase tracking-[0.4em]"
+            >
+              <img src="/creations-customs-logo.png" alt="Creations Customs" className="object-contain h-full w-full" />
+            </LiquidGlassCard>
+            {placeholders.slice(1).map((slot) => (
               <LiquidGlassCard
                 key={slot}
                 hover="glow"
                 variant="primary"
-                className="aspect-[4/5] border border-white/10 flex items-center justify-center text-white/30 text-sm uppercase tracking-[0.4em]"
+                className="aspect-[4/j5] border border-white/10 flex items-center justify-center text-white/30 text-sm uppercase tracking-[0.4em]"
               >
                 <span>PROJECT {slot}</span>
               </LiquidGlassCard>
