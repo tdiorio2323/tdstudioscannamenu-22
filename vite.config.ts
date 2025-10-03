@@ -49,8 +49,9 @@ export default defineConfig(({ mode }) => ({
             }
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({ dirs: out }));
-          } catch (e: any) {
-            res.statusCode = 500; res.end(e?.message || 'Error');
+          } catch (e: unknown) {
+            const message = e instanceof Error ? e.message : 'Error';
+            res.statusCode = 500; res.end(message);
           }
         });
 
@@ -87,8 +88,9 @@ export default defineConfig(({ mode }) => ({
 
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ ok: true, file: `src/pages/${comp}.tsx`, route: routePath }));
-            } catch (e: any) {
-              res.statusCode = 500; res.end(e?.message || 'Error');
+            } catch (e: unknown) {
+              const message = e instanceof Error ? e.message : 'Error';
+              res.statusCode = 500; res.end(message);
             }
           });
         });

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Picture from "./Picture";
 
 export const SplashScreen: React.FC = () => {
   const [progress, setProgress] = useState(0);
@@ -39,7 +40,7 @@ export const SplashScreen: React.FC = () => {
         }`}
     >
       <div className="relative w-64 h-24 mb-8">
-        <img src="/TD STUDIOS WHITE TEXT.png" alt="TD Studios" className="object-contain w-full h-full" loading="eager" />
+        <Picture src="/TD STUDIOS WHITE TEXT.png" alt="TD Studios" className="object-contain w-full h-full" loading="eager" />
       </div>
 
       <div className="font-mono text-white mb-4 h-6">{`LOADING_SYSTEM: ${matrixText}`}</div>

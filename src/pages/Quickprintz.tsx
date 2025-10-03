@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Picture from '../components/Picture';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -109,12 +110,12 @@ export default function QuickPrintz() {
         <div className="w-full h-[calc(100dvh-1.5rem)] sm:h-[calc(100dvh-3rem)] rounded-3xl bg-black/80 shadow-[0_0_80px_rgba(255,255,255,0.3)] ring-1 ring-white/10 p-4 sm:p-6 relative overflow-hidden drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] flex flex-col">
           {/* blueredsmoke background image inside card */}
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
-            <img src="/images/blueredsmoke.png" alt="Blue Red Smoke" className="w-full h-full object-cover opacity-70" />
+            <Picture src="/images/blueredsmoke.png" alt="Blue Red Smoke" className="w-full h-full object-cover opacity-70" />
           </div>
           
           {/* static logo (no bounce) - positioned over the smoke image */}
           <div className="flex justify-center mb-4 sm:mb-6 relative z-10">
-            <img src="/quickprintz-logo.png" alt="Quick Printz" className="h-40 sm:h-60 w-auto" />
+            <Picture src="/quickprintz-logo.png" alt="Quick Printz" className="h-40 sm:h-60 w-auto" />
           </div>
 
           {/* buttons */}
@@ -149,7 +150,7 @@ export default function QuickPrintz() {
                   rel="noopener noreferrer"
                   className="h-20 sm:h-32 flex-1 aspect-square bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center ring-1 ring-white/20 shadow-lg drop-shadow-md hover:bg-white/20 transition-all duration-300"
                 >
-                  <img src="/Cash_App-Logo.wine.svg" alt="Cash App" className="w-full h-full p-2 sm:p-4" />
+                  <Picture src="/Cash_App-Logo.wine.svg" alt="Cash App" className="w-full h-full p-2 sm:p-4" />
                 </a>
                 {/* Instagram */}
                 <a
@@ -158,7 +159,7 @@ export default function QuickPrintz() {
                   rel="noopener noreferrer"
                   className="h-20 sm:h-32 flex-1 aspect-square bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center ring-1 ring-white/20 shadow-lg drop-shadow-md hover:bg-white/20 transition-all duration-300"
                 >
-                  <img src="/Instagram-Logo.wine (1).svg" alt="Instagram" className="w-full h-full p-2 sm:p-4" />
+                  <Picture src="/Instagram-Logo.wine (1).svg" alt="Instagram" className="w-full h-full p-2 sm:p-4" />
                 </a>
                 {/* Gmail */}
                 <a
@@ -167,14 +168,14 @@ export default function QuickPrintz() {
                   rel="noopener noreferrer"
                   className="h-20 sm:h-32 flex-1 aspect-square bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center ring-1 ring-white/20 shadow-lg drop-shadow-md hover:bg-white/20 transition-all duration-300"
                 >
-                  <img src="/Gmail-Logo.wine.svg" alt="Gmail" className="w-full h-full p-3 sm:p-6" />
+                  <Picture src="/Gmail-Logo.wine.svg" alt="Gmail" className="w-full h-full p-3 sm:p-6" />
                 </a>
                 {/* Zelle */}
                 <a
                   href="mailto:derekcasiano16@gmail.com?subject=Zelle Payment Request"
                   className="h-20 sm:h-32 flex-1 aspect-square bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center ring-1 ring-white/20 shadow-lg drop-shadow-md hover:bg-white/20 transition-all duration-300"
                 >
-                  <img src="/zelle svg.svg" alt="Zelle" className="w-full h-full p-2 sm:p-4" />
+                  <Picture src="/zelle svg.svg" alt="Zelle" className="w-full h-full p-2 sm:p-4" />
                 </a>
               </div>
             </div>

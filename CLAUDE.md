@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Repository Structure
+
+This is a **single-level repository** with all source code, configuration, and build files at the root level. All development commands should be run from the repository root.
+
 ## Development Commands
 
 - `npm run dev` - Start Vite development server (port 8081 by default, configurable via PORT env var)

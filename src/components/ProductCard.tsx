@@ -18,7 +18,7 @@ export const ProductCard: React.FC<Props> = ({ name, image1, image2, description
   return (
     <GlassCard className="h-full flex flex-col p-0 overflow-hidden hover:bg-white/10 transition-all duration-300">
       <div
-        className="relative w-full flex-1 overflow-hidden bg-black"
+        className="relative w-full aspect-[4/5] overflow-hidden bg-black"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >

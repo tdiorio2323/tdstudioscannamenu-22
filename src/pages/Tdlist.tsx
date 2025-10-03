@@ -55,8 +55,9 @@ const Tdlist = () => {
         else if (roleData?.role === 'brand') navigate('/brand');
         else navigate('/shop');
       }
-    } catch (err: any) {
-      toast({ title: "Auth Error", description: err.message, variant: "destructive" });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'An error occurred';
+      toast({ title: "Auth Error", description: message, variant: "destructive" });
     } finally {
       setIsLoading(false);
     }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Picture from '../components/Picture';
 import { supabase } from '@/supabase/client';
 
 export default function QuickPrintzForm() {
@@ -35,18 +36,18 @@ export default function QuickPrintzForm() {
   return (
     <div
       className="min-h-dvh w-full bg-cover bg-center relative"
-      style={{ backgroundImage: "url('/images/quick printz store.jpeg')" }}
+      style={{ backgroundImage: "url('/images/quick printz store.webp')" }}
     >
       <div className="absolute inset-0 bg-black/70" />
 
       <main className="relative z-10 mx-auto flex min-h-dvh max-w-lg items-center justify-center p-6">
         <div className="w-full rounded-3xl bg-black/80 shadow-[0_0_80px_rgba(255,255,255,0.3)] ring-1 ring-white/10 p-6 relative overflow-hidden drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
-            <img src="/images/blueredsmoke.png" alt="Blue Red Smoke" className="w-full h-full object-cover opacity-70" />
+            <Picture src="/images/blueredsmoke.png" alt="Blue Red Smoke" className="w-full h-full object-cover opacity-70" />
           </div>
           
           <div className="flex justify-center mb-6 relative z-10">
-            <img src="/quickprintz-logo.png" alt="Quick Printz" className="h-60 w-auto" />
+            <Picture src="/quickprintz-logo.png" alt="Quick Printz" className="h-60 w-auto" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4 relative z-10">

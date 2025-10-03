@@ -89,7 +89,7 @@ export const SmartLinkScanner: React.FC = () => {
       
       // YouTube: youtube.com/@username or youtube.com/c/username
       if (url.includes('youtube.com')) {
-        const match = path.match(/\/(@[^\/?]+|c\/[^\/?]+)/);
+        const match = path.match(/\/(@[^/?]+|c\/[^/?]+)/);
         return match ? (match[1].startsWith('@') ? match[1] : `@${match[1].replace('c/', '')}`) : '';
       }
       

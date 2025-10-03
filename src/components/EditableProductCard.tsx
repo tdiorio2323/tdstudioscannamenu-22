@@ -30,7 +30,7 @@ export const EditableProductCard: React.FC<Props> = ({ item, selected, onToggleS
       onDragOver={(e) => e.preventDefault()}
       onDrop={() => onDrop?.(item.id)}
     >
-      <div className="relative w-full flex-1 overflow-hidden bg-black">
+      <div className="relative w-full aspect-[4/5] overflow-hidden bg-black">
         <img
           src={item.image1}
           alt={item.name}
