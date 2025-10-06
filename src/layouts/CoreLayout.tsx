@@ -200,7 +200,7 @@ const CoreLayout: React.FC<CoreLayoutProps> = ({ children }) => {
       </header>
 
       {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main>
         <Outlet />
         {children}
       </main>

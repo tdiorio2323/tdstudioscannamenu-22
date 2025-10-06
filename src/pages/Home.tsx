@@ -14,7 +14,7 @@ const Home: React.FC = () => {
       <SplashScreen />
 
       {/* Fullscreen entrance banner */}
-      <section className="px-0 pt-0">
+      <section className="px-0 pt-0 -mt-8">
         <AutoSliderBanner />
       </section>
 
