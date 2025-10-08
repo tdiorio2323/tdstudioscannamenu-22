@@ -1,12 +1,17 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-interface GlassCardProps {
+export interface GlassCardProps {
   children: ReactNode;
   className?: string;
+  draggable?: boolean;
+  onDragStart?: (e: React.DragEvent) => void;
+  onDragEnter?: () => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: () => void;
 }
 
-export default function GlassCard({ children, className }: GlassCardProps) {
+export default function GlassCard({ children, className, draggable, onDragStart, onDragEnter, onDragOver, onDrop }: GlassCardProps) {
   return (
     <div
       className={cn(
@@ -15,6 +20,11 @@ export default function GlassCard({ children, className }: GlassCardProps) {
         'hover:-translate-y-0.5 transition-transform duration-150 ease-out',
         className
       )}
+      draggable={draggable}
+      onDragStart={onDragStart}
+      onDragEnter={onDragEnter}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
     >
       <div className="relative z-10">
         {children}

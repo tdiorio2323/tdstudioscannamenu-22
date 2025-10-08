@@ -26,7 +26,7 @@ const componentLibrary: ComponentConfig[] = [
     id: 'auth-card',
     name: 'Auth Card',
     category: 'Social',
-    component: AuthCard,
+    component: AuthCard as unknown as React.ComponentType<Record<string, unknown>>,
     defaultProps: {
       title: "Tyler Studios",
       username: "@tylerstudios",
@@ -237,14 +237,14 @@ export const ComponentLibrary: React.FC = () => {
                             <Label className="text-white">{prop.name}</Label>
                             {prop.type === 'text' && (
                               <Input
-                                value={customProps[prop.name] || ''}
+                                 value={String(customProps[prop.name] || '')}
                                 onChange={(e) => updateProp(prop.name, e.target.value)}
                                 className="bg-white/10 border-white/20 text-white"
                               />
                             )}
                             {prop.type === 'select' && prop.options && (
                               <select
-                                value={customProps[prop.name] || ''}
+                                 value={String(customProps[prop.name] || '')}
                                 onChange={(e) => updateProp(prop.name, e.target.value)}
                                 className="w-full p-2 bg-white/10 border border-white/20 rounded text-white"
                               >

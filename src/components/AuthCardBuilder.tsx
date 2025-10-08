@@ -16,6 +16,12 @@ interface AuthCardConfig {
   username: string;
   profilePicture: string;
   bgImageSrc: string;
+  brandLogoSrc: string;
+  bounceLogoSrc: string;
+  showBounceOnMobile: boolean;
+  hideExtraButtons: boolean;
+  hideAuthForm: boolean;
+  extraImageSrc?: string;
   buttons: Array<{
     label: string;
     url: string;
@@ -30,6 +36,12 @@ const defaultConfig: AuthCardConfig = {
   username: "@tdstudios",
   profilePicture: "https://i.imgur.com/tWH4c48.png",
   bgImageSrc: "https://i.imgur.com/KBjPwGI.jpg",
+  brandLogoSrc: "https://i.imgur.com/tWH4c48.png",
+  bounceLogoSrc: "https://i.imgur.com/tWH4c48.png",
+  showBounceOnMobile: false,
+  hideExtraButtons: false,
+  hideAuthForm: false,
+  extraImageSrc: "",
   buttons: [
     { label: "Telegram", url: "https://t.me/+mx113PockSVjNzgx", enabled: true },
     { label: "Instagram", url: "https://www.instagram.com/punkiez__/", enabled: true },

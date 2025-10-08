@@ -96,24 +96,28 @@ export default function Shop() {
   const manualAdds: Product[] = useMemo(() => [
     {
       name: 'Mistic Bahama Blueberry',
+      price: 0,
       image1: '/mistic-bahama-blueberry.jpg',
       image2: '/mistic-bahama-blueberry.jpg',
       description: '',
     },
     {
       name: 'Mistic Tropical Fruit Punch',
+      price: 0,
       image1: '/mistic-tropical-fruit-punch.jpg',
       image2: '/mistic-tropical-fruit-punch.jpg',
       description: '',
     },
     {
       name: 'Mistic Kiwi Strawberry',
+      price: 0,
       image1: '/mistic-kiwi-strawberry.jpg',
       image2: '/mistic-kiwi-strawberry.jpg',
       description: '',
     },
     {
       name: 'Mistic Grape Strawberry',
+      price: 0,
       image1: '/mistic-grape-strawberry.jpg',
       image2: '/mistic-grape-strawberry.jpg',
       description: '',

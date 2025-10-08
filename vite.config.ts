@@ -10,22 +10,14 @@ export default defineConfig(({ mode }) => ({
     port: Number(process.env.PORT) || 8081,
   },
   plugins: [
-    react({
-      jsc: {
-        transform: {
-          react: {
-            throwIfNamespace: false,
-          },
-        },
-      },
-    }),
+    react(),
     mode === 'development' &&
     // Dev-only utilities
     mode === 'development' && {
       name: 'scaffold-writer',
-      configureServer(server) {
+      configureServer(server: any) {
         // List public files in allowed directories
-        server.middlewares.use('/__list-public', (req, res) => {
+        server.middlewares.use('/__list-public', (req: any, res: any) => {
           if (req.method !== 'GET') { res.statusCode = 405; res.end('Method Not Allowed'); return; }
           try {
             const u = new URL(req.url || '', 'http://localhost');
@@ -55,12 +47,12 @@ export default defineConfig(({ mode }) => ({
           }
         });
 
-        server.middlewares.use('/__scaffold', (req, res) => {
+        server.middlewares.use('/__scaffold', (req: any, res: any) => {
           if (req.method !== 'POST') {
             res.statusCode = 405; res.end('Method Not Allowed'); return;
           }
           let body = '';
-          req.on('data', (c) => body += c);
+          req.on('data', (c: any) => body += c);
           req.on('end', () => {
             try {
               const { name, route, code } = JSON.parse(body || '{}');

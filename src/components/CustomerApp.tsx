@@ -489,6 +489,7 @@ const CustomerApp = ({ onCheckout }: CustomerAppProps) => {
               cartTotal={cartTotal}
               removeFromCart={removeFromCart}
               addToCart={addToCart}
+              onCheckout={onCheckout}
               closePreview={() => setIsCartPreviewOpen(false)}
             />
           )}
