@@ -32,6 +32,7 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 - **State Management**: TanStack Query for server state
 - **Routing**: React Router DOM
 - **Forms**: React Hook Form with Zod validation
+- **Error Handling**: ErrorBoundary wrapper in App.tsx catches and displays React errors
 
 ### Dual Application Architecture
 
@@ -59,6 +60,9 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 - `/__auth-builder` - Auth card builder
 - `/__card-editor` - Mass card editor
 - `/__components` - Component library
+
+**Dynamic Routes**:
+- `/:slug` - Dynamic auth card pages (catch-all route, must be defined above 404)
 
 ### Key Architecture Patterns
 
@@ -139,11 +143,12 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 
 **Page Generation**:
 - `npm run gen:page` - Interactive script creates new page component and auto-adds routing to App.tsx
-- Vite dev middleware `/__scaffold` - Development-only page creation endpoint
+- Vite dev middleware `/__scaffold` - Development-only endpoint for programmatic page creation (POST with name, route, code)
 
 **Asset Management**:
 - `scripts/generate-shop-manifest.mjs` - Scans `public/td slide` and `public/shoppagepics` for images, excludes specific files, outputs `_shop-manifest.json`
-- Automatic execution during `npm run build`
+- Vite dev middleware `/__list-public` - Development-only endpoint for live folder listing (GET with optional ?dir= params)
+- Automatic manifest generation during `npm run build`
 - OCR scripts for batch image processing
 
 **Documentation**:
