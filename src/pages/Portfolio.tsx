@@ -6,12 +6,12 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <section className="relative overflow-hidden h-[60vh]">
+      <section className="relative overflow-hidden h-[42vh] md:h-[60vh] rounded-2xl mx-6 mt-6">
         <div className="absolute inset-0">
           <img
             src="/images/para.webp"
             alt="Portfolio showcase background"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover rounded-2xl"
             loading="lazy"
           />
         </div>

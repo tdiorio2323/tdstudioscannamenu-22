@@ -7,16 +7,14 @@ import GlassCard from '@/components/GlassCard';
 export default function Web() {
   return (
     <div className="min-h-screen bg-black text-white">
-      <section className="relative overflow-hidden h-[70vh] md:h-[85vh] rounded-2xl mx-6 mt-6">
+      <section className="relative overflow-hidden h-[42vh] md:h-[60vh] rounded-2xl mx-6 mt-6">
         <div className="absolute inset-0">
           <img
             src="/images/TD HOT TUB.png"
             alt="TD Studios web showcase"
-            className="h-full w-full object-cover rounded-2xl brightness-105 contrast-110 saturate-110 transform-gpu will-change-transform hero-image"
+            className="h-full w-full object-cover rounded-2xl"
             loading="lazy"
           />
-          {/* Subtle overlay for enhanced depth and clarity */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 rounded-2xl pointer-events-none"></div>
         </div>
       </section>
 
