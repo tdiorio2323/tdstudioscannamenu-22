@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
+import type { ViteDevServer, Connect } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import fs from "fs";
+import type { IncomingMessage, ServerResponse } from "http";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -15,9 +17,9 @@ export default defineConfig(({ mode }) => ({
     // Dev-only utilities
     mode === 'development' && {
       name: 'scaffold-writer',
-      configureServer(server: any) {
+      configureServer(server: ViteDevServer) {
         // List public files in allowed directories
-        server.middlewares.use('/__list-public', (req: any, res: any) => {
+        server.middlewares.use('/__list-public', (req: IncomingMessage, res: ServerResponse) => {
           if (req.method !== 'GET') { res.statusCode = 405; res.end('Method Not Allowed'); return; }
           try {
             const u = new URL(req.url || '', 'http://localhost');
@@ -47,12 +49,12 @@ export default defineConfig(({ mode }) => ({
           }
         });
 
-        server.middlewares.use('/__scaffold', (req: any, res: any) => {
+        server.middlewares.use('/__scaffold', (req: IncomingMessage, res: ServerResponse) => {
           if (req.method !== 'POST') {
             res.statusCode = 405; res.end('Method Not Allowed'); return;
           }
           let body = '';
-          req.on('data', (c: any) => body += c);
+          req.on('data', (c: Buffer) => body += c);
           req.on('end', () => {
             try {
               const { name, route, code } = JSON.parse(body || '{}');
