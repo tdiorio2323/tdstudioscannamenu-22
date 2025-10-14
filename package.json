@@ -1,0 +1,44 @@
+{
+  "name": "td-studios-digital",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "postbuild": "next-sitemap"
+  },
+  "dependencies": {
+    "next": "14.2.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "framer-motion": "^11.11.17",
+    "lucide-react": "^0.462.0",
+    "zod": "^3.23.8",
+    "next-themes": "^0.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "sonner": "^1.5.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.3",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.16",
+    "tailwindcss": "^3.4.11",
+    "postcss": "^8.5.6",
+    "autoprefixer": "^10.4.21",
+    "prettier": "^3.3.3",
+    "husky": "^9.1.6",
+    "next-sitemap": "^4.2.3"
+  }
+}

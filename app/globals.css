@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 75% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 50% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 50% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 214 100% 77%;
+    --primary-foreground: 216 75% 6%;
+
+    --secondary: 150 77% 83%;
+    --secondary-foreground: 216 75% 6%;
+
+    --muted: 220 40% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 214 100% 77%;
+    --accent-foreground: 216 75% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 40% 20%;
+    --input: 220 40% 20%;
+    --ring: 214 100% 77%;
+
+    --radius-lg: 28px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#050816] text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-overlay {
+    @apply bg-gradient-to-b from-[#0B1028]/0 via-[#050816]/60 to-black;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(138, 180, 255, 0.3);
+  }
+}
